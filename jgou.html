@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>党委宣传部</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="icon" href="./img/henu-head.png" type="image/png">
+
+    <style>
+      body {
+        margin: 0 auto;
+        background-color: #fff;
+        font-family: sans-serif;
+        color: #333;
+      }
+
+      :root {
+        --primary-color: #8b1e23;
+        --secondary-color: #e6e6e6;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --text-muted: #4b5563;
+        --border-color: #eee;
+      }
+
+      /* 页眉样式 */
+      .page-header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 1rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      .header-logo {
+        height: 2rem;
+      }
+
+      /* 主内容区域样式 */
+      .main-container {
+        max-width: 70rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.5rem 1rem;
+      }
+
+      /* 机构设置部分 */
+      .org-section {
+        margin-bottom: 1.5rem;
+      }
+      .org-layout {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .vertical-title {
+        writing-mode: vertical-lr;
+        text-shadow: 2px 2px 4px rgba(139, 30, 35, 0.2);
+        color: var(--primary-color);
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1rem 0;
+        letter-spacing: normal;
+      }
+      .org-list {
+        flex: 1;
+        min-width: 0;
+      }
+      .org-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+        cursor: pointer;
+      }
+      .org-item:hover {
+        background-color: #f9f9f9;
+      }
+      .item-title {
+        color: var(--text-primary);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-right: 0.5rem;
+        font-size: 1rem;
+      }
+      .item-date {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        flex-shrink: 0;
+      }
+
+      /* 分隔线 */
+      .divider {
+        border: none;
+        border-top: 2px solid var(--primary-color);
+        margin: 0;
+      }
+
+      /* 详情部分 */
+      .detail-section {
+        margin-top: 2rem;
+        background-color: #fff;
+        padding: 1rem;
+      }
+      .detail-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .detail-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+      }
+      .detail-meta {
+        /* 发布日期等信息 */
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+      }
+      .detail-content {
+        /* 主要内容 */
+        color: var(--text-primary);
+        line-height: 1.625;
+        word-wrap: break-word;
+        font-size: 0.875rem;
+      }
+      .detail-content p {
+        /* 直接设置段落样式 */
+        margin-bottom: 1rem;
+      }
+      .detail-content p:first-of-type {
+        margin-bottom: 1.5rem;
+      }
+      .detail-content p:last-of-type {
+        margin-bottom: 0;
+      }
+
+      @media (min-width: 640px) {
+        .page-header {
+          padding: 1rem 2rem;
+        }
+        .header-title {
+          font-size: 1.5rem;
+        }
+        .header-logo {
+          height: 2.5rem;
+        }
+        .main-container {
+          padding: 1.5rem 2rem;
+        }
+        .vertical-title {
+          font-size: 1.5rem;
+          letter-spacing: 0.5em;
+        }
+        .item-date {
+          font-size: 1rem;
+        }
+        .item-title {
+          font-size: 1rem;
+        }
+        .detail-section {
+          padding: 2rem;
+        }
+        .detail-title {
+          font-size: 1.5rem;
+        }
+        .detail-meta {
+          font-size: 1rem;
+        }
+        .detail-content {
+          font-size: 1rem;
+        }
+        .detail-content p {
+          padding-left: 4rem;
+        }
+      }
+
+      /* 新增样式 */
+      .org-item.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+      .org-item.active .item-title,
+      .org-item.active .item-date {
+        color: white;
+      }
+
+      /* 底部页脚样式与动画 */
+      .footer {
+        background-color: #f8f9fa;
+        padding: 2rem 0;
+        margin-top: 1.5rem;
+        position: relative;
+        text-align: center;
+      }
+
+      /* 子弹发射效果边框 */
+      .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #982820;
+        overflow: hidden;
+      }
+
+      .bullet-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        overflow: hidden;
+      }
+
+      .bullet {
+        position: absolute;
+        top: 0;
+        width: 20px;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(152, 40, 32, 0.2), #982820 50%, rgba(178, 20, 20, 1));
+        animation: bulletMove 3s linear infinite;
+        opacity: 0;
+      }
+
+      .bullet:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .bullet:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+
+      .bullet:nth-child(3) {
+        animation-delay: 1.2s;
+      }
+
+      .bullet:nth-child(4) {
+        animation-delay: 1.8s;
+      }
+
+      .bullet:nth-child(5) {
+        animation-delay: 2.4s;
+      }
+
+      @keyframes bulletMove {
+        0% {
+          left: -20px;
+          opacity: 0;
+          width: 20px;
+        }
+        5% {
+          opacity: 1;
+        }
+        30% {
+          width: 80px;
+        }
+        100% {
+          left: 100%;
+          opacity: 0;
+          width: 20px;
+        }
+      }
+
+      .footer-logo {
+        display: block;
+        margin: 0 auto 10px auto;
+        max-width: 150px;
+        height: auto;
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        transition: transform 0.3s ease;
+        animation: fadeInLogo 1.5s ease forwards;
+        opacity: 0;
+      }
+
+      .footer-logo:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      @keyframes fadeInLogo {
+        0% { 
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% { 
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .footer-divider {
+        width: 60px;
+        height: 2px;
+        background-color: #e0e0e0;
+        margin: 0 auto 1rem;
+      }
+
+      .footer-text {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .page-footer {
+        background-color: #8B0000;
+        color: #fff;
+        text-align: center;
+        padding: 40px 0;
+        font-size: 14px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #800000, #8B0000, #990000, #8B0000, #800000);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        margin-top: 20px;
+      }
+
+      @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .footer-copyright {
+        font-size: 16px;
+        color: white;
+        animation: fadeInText 2s ease-in-out forwards;
+        margin-top: 10px;
+        position: relative;
+        display: inline-block;
+        opacity: 0;
+      }
+      
+      .footer-copyright::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: white;
+        transition: all 0.5s ease;
+        opacity: 0;
+      }
+      
+      .footer-copyright:hover::after {
+        width: 80%;
+        left: 10%;
+        opacity: 0.8;
+      }
+      
+      /* Add particles effect */
+      .page-footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+          radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+          radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: particleMove 8s linear infinite;
+      }
+      
+      @keyframes particleMove {
+        0% { background-position: 0 0; }
+        100% { background-position: 50px 50px; }
+      }
+
+      @keyframes fadeInText {
+        0% {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 页眉 -->
+    <header class="page-header">
+      <h1 class="header-title"><a href="./index.html" style="color: white; text-decoration: none;">党委宣传部</a></h1>
+
+      <img
+        src="https://xcb.henu.edu.cn/images/logohenu0802.png"
+        alt="河南大学"
+        class="header-logo"
+      />
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="main-container">
+      <!-- 机构设置部分 -->
+      <div class="org-section">
+        <div class="org-layout">
+          <div class="vertical-title">机构设置</div>
+
+          <div class="org-list">
+            <div class="org-item active" onclick="showContent('news')">
+              <span class="item-title">新闻中心主要职责</span>
+              <span class="item-date">2016年04月05日</span>
+            </div>
+            <div class="org-item" onclick="showContent('publicity')">
+              <span class="item-title">宣传部主要职责</span>
+              <span class="item-date">2016年04月05日</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 分隔线 -->
+      <hr class="divider" />
+
+      <!-- 新闻中心主要职责详情部分 -->
+      <div id="newsContent" class="detail-section">
+        <div class="detail-header">
+          <h2 class="detail-title">新闻中心主要职责</h2>
+        </div>
+
+        <div class="detail-meta">发布日期： 2016年04月05日 00:00</div>
+
+        <div class="detail-content">
+          <p>
+            新闻中心是负责学校新闻宣传工作的专门机构，挂靠党委宣传部，主要职责是：
+          </p>
+          <p>
+            1、负责统筹规划、协调和实施新闻宣传工作，促进形成正确的舆论氛围，树立学校良好的社会形象。
+          </p>
+          <p>
+            2、负责《河南大学报》、河南大学网站、官方微博、官方微信、河大画报、广播站等校内媒体，
+            以及校内公共电子大屏幕、宣传橱窗等宣传阵地的管理工作。
+          </p>
+          <p>
+            3、负责组织实施内外新闻宣传报道工作。制定学校相关的新闻采写、报送、发布制度，组织召开新闻发布会。
+          </p>
+          <p>
+            4、负责组织建立网络舆情监控、预警机制，及时准确的提供舆情研判信息，做好相关工作。
+          </p>
+          <p>
+            5、做好全校教工和学生记者队伍及学生通讯社团的业务培训和管理工作。
+          </p>
+        </div>
+      </div>
+
+      <!-- 宣传部主要职责详情部分 -->
+      <div id="publicityContent" class="detail-section" style="display: none;">
+        <div class="detail-header">
+          <h2 class="detail-title">宣传部主要职责</h2>
+        </div>
+
+        <div class="detail-meta">发布日期： 2016年04月05日 00:00</div>
+
+        <div class="detail-content">
+          <p>
+            宣传部是校党委负责宣传思想工作的职能部门，主要职责是：
+          </p>
+          <p>
+            1.负责宣传贯彻党的路线方针政策，做好思想意识形态领域引导和管理工作。
+          </p>
+          <p>
+            2.负责学校的理论教育工作，协助落实学校和学院中心组的理论学习计划，组织教职工的理论学习，提供学习参考资料。
+          </p>
+          <p>
+            3.负责师生思想政治工作，指导学校思想政治理论课建设工作。
+          </p>
+          <p>
+            4.负责学校精神文明创建工作的规划、协调与督促工作，开展精神文明创建、素质养成教育等。
+          </p>
+          <p>
+            5.负责校园文化建设工作。会同有关部门，开展健康、向上、高雅的校园文化活动，打造良好的育人环境，积极推进校园文化建设。
+          </p>
+          <p>
+            6.统筹指导内外宣传报道工作，树立学校良好的社会形象。
+          </p>
+          <p>
+            7.负责全校宣传思想干部队伍的培训工作。
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- 底部页脚 -->
+    <footer class="page-footer">
+      <img src="./img/henu_logo.png" alt="Footer Logo" class="footer-logo">
+      <p class="footer-copyright">
+        © 2024 河南大学党委宣传部.
+        <br>
+        技术支持: 河南大学网站工作室
+      </p>
+    </footer>
+
+    <script>
+      function showContent(type) {
+        // 更新选中状态
+        document.querySelectorAll('.org-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        // 隐藏所有内容
+        document.getElementById('newsContent').style.display = 'none';
+        document.getElementById('publicityContent').style.display = 'none';
+        
+        if (type === 'news') {
+          document.getElementById('newsContent').style.display = 'block';
+          document.querySelector('.org-item:first-child').classList.add('active');
+        } else {
+          document.getElementById('publicityContent').style.display = 'block';
+          document.querySelector('.org-item:last-child').classList.add('active');
+        }
+      }
+    </script>
+  </body>
+</html>

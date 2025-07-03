@@ -1,0 +1,2795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河南大学党委宣传部</title>
+    <link rel="icon" href="./img/henu-head.png" type="image/png">
+    <style>
+        /* 超级可爱的全局样式初始化~ */
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        li,
+        div,
+        section,
+        header,
+        footer,
+        nav,
+        article {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+            /* 选个常见的字体 */
+            color: #333;
+            /* 默认文字颜色 */
+        }
+
+        a {
+            text-decoration: none;
+            /* 去掉链接下划线 */
+            color: inherit;
+            /* 链接颜色继承父元素 */
+        }
+
+        ul {
+            list-style: none;
+            /* 去掉列表的小点点 */
+        }
+
+        img {
+            max-width: 100%;
+            /* 图片最大宽度不超过容器 */
+            height: auto;
+            /* 高度自动 */
+            display: block;
+            /* 图片块级显示，消除底部空隙 */
+        }
+
+        body {
+            background-color: #f5f5f5;
+            /* 页面整体浅灰色背景 */
+        }
+
+        .container {
+            max-width: 1200px;
+            /* 内容最大宽度 */
+            margin: 0 auto;
+            /* 居中显示 */
+            padding: 0 15px;
+            /* 左右留点空隙 */
+        }
+
+        /* --- 头部 --- */
+        .page-header {
+            background-color: #fff;
+            /* 白色背景 */
+            padding: 0.75rem 1rem; /* Reduce padding */
+            border-bottom: 1px solid #eee;
+            margin-top: 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            margin: 0;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 50px;
+            /* Logo 大小 */
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure the image stays within the circular border */
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            color: #000; /* 修改logo-text颜色为黑色 */
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* --- 让搜索区域用 Flexbox 来布局 --- */
+        .search-area {
+            display: flex;
+            /* 使用 Flexbox */
+            align-items: center;
+            /* 垂直居中对齐 */
+            border: 1px solid #ccc;
+            /* 给整个区域加个边框，看起来像一个整体 */
+            border-radius: 4px;
+            padding: 0 8px;
+            /* 左右给点内边距 */
+            background-color: #fff;
+            /* 确保背景是白色 */
+            width: 40px; /* 初始宽度，仅显示图标 */
+            overflow: hidden; /* 隐藏超出部分 */
+            animation: searchExpand 0.8s ease-out 0.5s forwards; /* 延迟0.5s，持续0.8s */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .search-area:hover {
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes searchExpand {
+            0% {
+                width: 40px;
+            }
+            70% {
+                width: 220px;
+            }
+            85% {
+                width: 200px;
+            }
+            100% {
+                width: 210px;
+            }
+        }
+
+        /* --- 设置搜索图标的大小和间距 --- */
+        .search-icon {
+            width: 16px;
+            /* 图标宽度，宝宝可以根据图片调整 */
+            height: 16px;
+            /* 图标高度 */
+            margin-right: 5px;
+            /* 图标和输入框之间加点空隙 */
+            opacity: 0.6;
+            /* 可以让图标稍微灰一点，不那么抢眼 */
+            animation: searchIconPulse 1.2s ease-out;
+        }
+        
+        @keyframes searchIconPulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+        }
+
+        /* --- 调整输入框样式，去掉它自己的边框 --- */
+        .search-area input[type="search"] {
+            padding: 8px 0;
+            /* 只需要上下内边距，左右交给外层容器 */
+            border: none;
+            /* 去掉输入框自己的边框 */
+            outline: none;
+            /* 去掉点击时的蓝色轮廓 */
+            width: 100%;
+            /* 让输入框填满剩余空间 */
+            flex-grow: 1;
+            /* Flexbox 伸展因子 */
+            background-color: transparent;
+            /* 背景透明，使用外层容器的背景 */
+            opacity: 0;
+            animation: inputFadeIn 0.4s ease-out 1.1s forwards; /* 在搜索框展开后显示 */
+            font-size: 14px;
+            color: #333;
+        }
+        
+        @keyframes inputFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* --- 导航栏 --- */
+        .main-nav {
+            background-color: #8B0000;
+            /* 暗红色背景 */
+            color: #fff;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* 导航项出场动画 */
+        .nav-list li {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: navItemSlideIn 0.5s forwards ease-out;
+        }
+
+        /* 为每个导航项设置不同的延迟，形成从左至右依次出现的效果 */
+        .nav-list li:nth-child(1) { animation-delay: 0.1s; }
+        .nav-list li:nth-child(2) { animation-delay: 0.2s; }
+        .nav-list li:nth-child(3) { animation-delay: 0.3s; }
+        .nav-list li:nth-child(4) { animation-delay: 0.4s; }
+        .nav-list li:nth-child(5) { animation-delay: 0.5s; }
+        .nav-list li:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes navItemSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .nav-list li a {
+            display: block;
+            padding: 15px 15px;
+            /* 导航项间距 */
+            color: #fff;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-list li a:hover {
+            background-color: #a52a2a;
+            /* 悬停时深一点的红色 */
+        }
+
+        /* --- Banner/Hero --- */
+        .hero-section {
+            height: 360px; /* 增加高度占据原本搜索框的位置 */
+            margin-top: 0;
+            border-radius: 0; /* 移除圆角，让它与屏幕边缘对齐 */
+            background: url('./img/background.jpg') no-repeat center center;
+            /* 需要替换成实际图片URL */
+            background-size: cover;
+            background-color: #ccc;
+            /* 图片加载失败时的背景色 */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            display: flex;
+            /* 让 slide 横向排列 */
+            width: 300%;
+            /* 假设有 3 张图，总宽度就是 300% */
+            height: 100%;
+            /* 高度撑满父容器 */
+            position: absolute;
+            /* 相对于 hero-section 定位 */
+            top: 0;
+            left: 0;
+            transition: transform 0.5s ease-in-out;
+            /* 滑动动画！ */
+        }
+
+        .slide {
+            width: calc(100% / 3);
+            /* 每张 slide 占总宽度的 1/3 (假设3张图) */
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            /* 为了演示，我们用内联样式设置了背景色，实际可以用不同的 class 或背景图 */
+            /* background-color: #eee; */
+            /* 默认背景色 */
+        }
+
+        /* 确保文字盒子和箭头在最上面 */
+        .hero-text-box,
+        .hero-arrow,
+        .dots-container {
+            z-index: 2;
+            /* 比 slides-wrapper 的层级高 */
+            position: absolute;
+            /* 确保它们使用绝对定位 */
+        }
+
+        .hero-text-box {
+            top: 55%; /* 向下移动一点，在更大的空间中更好地居中 */
+            left: 20px;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            /* 半透明白色背景 */
+            padding: 15px 40px;
+            text-align: center;
+            border-radius: 4px;
+            max-width: 400px; /* 稍微增加宽度 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: heroBoxFadeIn 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes heroBoxFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30%);
+                backdrop-filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-50%);
+                backdrop-filter: blur(2px);
+            }
+        }
+
+        /* 箭头位置不变 */
+        .hero-arrow.left {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hero-arrow.right {
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+
+        /* (可选) 小圆点样式 */
+        .dots-container {
+            bottom: 15px;
+            /* 放在底部 */
+            left: 50%;
+            transform: translateX(-50%);
+            /* 水平居中 */
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* 半透明白点 */
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: rgba(255, 255, 255, 0.9);
+            /* 当前激活的点更白 */
+        }
+
+        .hero-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #8B0000;
+            /* 标题用暗红色 */
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroElementFadeIn 0.7s ease-out 0.6s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroElementFadeIn 0.7s ease-out 0.9s forwards;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #8B0000;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroElementFadeIn 0.7s ease-out 1.2s forwards;
+        }
+
+        @keyframes heroElementFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-arrow {
+            /* 左右箭头样式 (简单占位) */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-arrow.left {
+            left: 20px;
+        }
+
+        .hero-arrow.right {
+            right: 20px;
+        }
+
+
+        /* --- 内容区域通用样式 --- */
+        .content-section {
+            padding: 40px 0 20px; /* Reduced bottom padding */
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            /* text-align: center; */
+            /* Remove center alignment */
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            line-height: 1.5;
+            /* Adjust line-height for two lines */
+            /* Remove or comment out the old border-bottom if it exists */
+            /* border-bottom: 3px solid #8B0000; */
+            width: fit-content;
+            margin-top: 1em;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: calc(4em + 0.4em);
+            /* 根据四个字的宽度动态调整红条长度 */
+            height: 4px;
+            background-color: #8B0000;
+            border-radius: 2px;
+        }
+
+        /* Style for the spans inside the title */
+        .section-title span {
+            display: inline;
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+            line-height: 1.3;
+            padding-left: 0;
+        }
+
+        .section-title span+span {
+            margin-left: 0.1em;
+            /* 减小两个词之间的间距 */
+        }
+
+        .carousel-container {
+            position: relative;
+            /* 为了定位箭头 */
+            width: 100%;
+            /* 宽度占满父容器 */
+            overflow: hidden;
+            /* 隐藏超出部分！核心！ */
+            padding: 0 40px;
+            /* 左右留出空间给箭头 (可选) */
+            margin-top: 30px;
+            /* 和标题隔开 */
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            /* 让卡片横向排列 */
+            /* flex-wrap: nowrap; /* 确保不换行 */
+            gap: 30px;
+            /* 卡片之间的固定间距，和 card-grid 保持一致 */
+            transition: transform 0.5s ease-in-out;
+            /* 滑动动画 */
+            /* 宽度由 JS 或内容决定，不需要设置 */
+            padding-bottom: 10px;
+            /* 防止阴影被切掉 */
+        }
+
+        /* 轮播里的卡片样式调整 */
+        .classroom-carousel .card {
+            /* 原来的 width 计算方式可能还适用，但要确保不换行 */
+            /* width: calc((100% / 3) - (2 * 30px / 3)); */
+            /* 尝试保持三列宽度，减去gap影响 */
+            /* 或者更稳妥地设置 flex-basis 和 flex-shrink */
+            flex-basis: calc(33.333% - 20px);
+            /* 基于 30px gap 计算 */
+            flex-shrink: 0;
+            /* 防止卡片被压缩！ */
+            min-width: 300px;
+            /* 保留最小宽度 */
+            /* 其他 .card 样式继承 */
+        }
+
+        /* 轮播箭头样式 */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            display: flex;
+            /* 让箭头居中 */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .carousel-arrow.prev {
+            left: 0px;
+            /* 调整箭头位置 */
+        }
+
+        .carousel-arrow.next {
+            right: 0px;
+            /* 调整箭头位置 */
+        }
+
+        .carousel-arrow:disabled {
+            /* 按钮禁用时的样式 */
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            /* 允许换行 */
+            gap: 30px;
+            /* 卡片间距 */
+            justify-content: center;
+            /* 居中卡片 */
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            /* 防止图片溢出 */
+            width: calc(33.333% - 20px);
+            /* 三列布局，减去部分间距 */
+            min-width: 300px;
+            /* 最小宽度 */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 200px;
+            /* 固定图片高度 */
+            background-color: #eee;
+            /* 图片占位符背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #aaa;
+            transition: transform 0.5s ease;
+        }
+
+        .card-image img {
+            /* 如果用真图片 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            /* 让内容区填充剩余空间 */
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            /* 最多显示两行 */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 50px;
+            /* 保证标题区域高度大致一致 */
+        }
+
+        .card-meta {
+            font-size: 14px;
+            color: #999;
+            margin-top: auto;
+            /* 把时间戳推到底部 */
+            padding-top: 10px;
+            /* 和标题隔开点距离 */
+        }
+
+        .card-meta span::before {
+            /* 时间小图标 */
+            content: '🕒';
+            margin-right: 5px;
+            opacity: 0.7;
+        }
+
+        /* --- Reveal on Scroll Styles --- */
+
+        /* Initial state for GENERAL elements to be revealed */
+        .content-section,
+        .card,
+        .announcement-item {
+            opacity: 0;
+            transform: translateY(30px);
+            /* Default: fade up */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Initial state SPECIFICALLY for theory columns */
+        .theory-latest-grid .theory-column {
+            opacity: 0;
+            transform: translateX(-50px);
+            /* Start from left */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .theory-latest-grid .latest-column {
+            opacity: 0;
+            transform: translateX(50px);
+            /* Start from right */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: 0.1s;
+            /* Optional: slight delay for the right column */
+        }
+
+        /* State when GENERAL element becomes visible (INCREASED SPECIFICITY) */
+        .content-section.is-visible,
+        .card.is-visible,
+        .announcement-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            /* Default: fade up */
+        }
+
+        /* State when SPECIFIC theory columns become visible */
+        .theory-latest-grid .theory-column.is-visible,
+        .theory-latest-grid .latest-column.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+            /* Slide to final position */
+        }
+
+        /* --- 理论学习 / 最新文章 --- */
+        .theory-latest-grid {
+            display: flex;
+            gap: 30px;
+            /* 两栏间距 */
+        }
+
+        .theory-column,
+        .latest-column {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            /* 各占一半宽度 */
+        }
+
+        .column-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8B0000;
+            /* 标题下划线 */
+            color: #8B0000;
+        }
+
+        .theory-list li,
+        .latest-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+            /* 分隔线 */
+        }
+
+        .theory-list li:last-child,
+        .latest-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .theory-list li a,
+        .latest-list li a {
+            display: block;
+            font-size: 16px;
+            line-height: 1.5;
+            transition: color 0.3s ease;
+        }
+
+        .theory-list li a:hover,
+        .latest-list li a:hover {
+            color: #8B0000;
+            /* 悬停时变红 */
+        }
+
+        .theory-list li a::before {
+            /* 理论学习的小图标 */
+            content: '📖';
+            /* 或者用截图里的图标 */
+            margin-right: 8px;
+            color: #8B0000;
+        }
+
+        .latest-meta {
+            font-size: 13px;
+            color: #999;
+            margin-top: 5px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .latest-meta span::before {
+            content: '📅 ';
+            opacity: 0.7;
+        }
+
+        .latest-meta .views::before {
+            content: '👁️ ';
+            opacity: 0.7;
+        }
+
+        .biaozhi {}
+
+        /* --- 通用内容盒子样式 (可以给其他部分也用) --- */
+        .content-box {
+            background-color: #fff;
+            /* 这就是白色背景啦 */
+            padding: 25px 30px;
+            /* 给盒子内部留出舒服的边距 */
+            border-radius: 8px;
+            /* 圆角边框 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* 淡淡的阴影 */
+            margin-top: 30px;
+            /* 可以给盒子和它上面的元素之间留点距离 (可选) */
+        }
+
+        /* --- 针对通知公告盒子里的标题，可能需要调整下边距 --- */
+        .announcement-box .section-title {
+            /* text-align: left; 已经在全局设置过了 */
+            margin-bottom: 20px;
+            /* 减少标题和列表之间的距离 */
+        }
+
+        /* 确保第一个通知条目和标题之间有合适的距离 */
+        .announcement-box .announcement-item:first-child {
+            padding-top: 10px;
+        }
+
+        /* 单个通知条目 */
+        .announcement-item {
+            display: flex;
+            /* 横向排列 */
+            justify-content: space-between;
+            /* 两端对齐 */
+            align-items: center;
+            /* 垂直居中 */
+            padding: 25px 0;
+            /* 上下留白 */
+            border-bottom: 1px solid #ddd;
+            /* 下划虚线分隔 */
+        }
+
+        .announcement-item:last-child {
+            border-bottom: none;
+            /* 最后一个条目下面不要线 */
+            padding-bottom: 0;
+            /* 最后一个条目下面不要额外留白 */
+        }
+
+        .announcement-content {
+            flex-grow: 1;
+            /* 让左边内容占据尽可能多的空间 */
+            margin-right: 20px;
+            /* 和右边链接隔开点距离 */
+        }
+
+        /* "重要通知"标签 */
+        .announcement-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            /* 圆圆的角 */
+            font-size: 12px;
+            margin-bottom: 8px;
+            /* 和标题隔开点 */
+        }
+
+        .announcement-tag.important {
+            background-color: #ffebee;
+            /* 淡粉红背景 */
+            color: #c62828;
+            /* 暗红色文字 */
+            font-weight: bold;
+        }
+
+        /* 通知标题 */
+        .announcement-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .announcement-title a:hover {
+            color: #8B0000;
+            /* 鼠标放上去变红 */
+        }
+
+
+        /* 日期和查看次数 */
+        .announcement-meta {
+            display: flex;
+            align-items: center;
+            /* 图标和文字垂直对齐 */
+            gap: 15px;
+            /* 日期和次数之间的空隙 */
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* 日期和次数前面的小图标 */
+        .announcement-meta .date::before {
+            content: '🕒';
+            margin-right: 5px;
+            opacity: 0.7;
+        }
+
+        .announcement-meta .views::before {
+            content: '👁️';
+            margin-right: 5px;
+            opacity: 0.7;
+        }
+
+        /* "查看详情"链接 */
+        .announcement-action .details-link {
+            color: #8B0000;
+            /* 暗红色 */
+            font-weight: bold;
+            font-size: 15px;
+            white-space: nowrap;
+            /* 防止文字换行 */
+            transition: color 0.3s ease;
+        }
+
+        .announcement-action .details-link:hover {
+            color: #a52a2a;
+            /* 鼠标放上去深一点红 */
+        }
+
+        /* 把原来的占位符样式隐藏掉 */
+        .announcement-placeholder {
+            display: none;
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            /* 手机端状态栏中的logo尺寸调整 */
+            .status-bar .logo-area .logo-img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .status-bar .logo-area .logo-text {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .status-bar .status-left {
+                display: flex;
+                align-items: center;
+                gap: 5px; /* 减小logo和文字间距 */
+            }
+
+            .logo-text {
+                font-size: 18px;
+                font-weight: bold;
+                color: white
+            }
+
+            .search-area {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .main-nav .nav-list {
+                display: flex;
+                overflow-x: auto;
+                gap: 5px;
+                padding: 10px 0;
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .main-nav .nav-list::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-list li a {
+                padding: 10px 15px;
+                font-size: 14px;
+                white-space: nowrap;
+                border-radius: 4px;
+                background-color: #8B0000;
+                color: #fff;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .nav-list li a:hover {
+                background-color: #a52a2a;
+                transform: scale(1.05);
+            }
+            
+            .nav-list li a:active {
+                transform: scale(0.95);
+                background-color: #a52a2a;
+            }
+
+            /* 隐藏手机端轮播图的箭头导航按钮 */
+            .hero-arrow {
+                display: none !important;
+            }
+
+            /* 调整轮播图文本框 */
+            .hero-text-box {
+                left: 15px;
+                right: 15px;
+                padding: 15px;
+                background-color: rgba(255, 255, 255, 0.9);
+                border-radius: 8px;
+                max-width: 300px;
+            }
+
+            .hero-title {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+
+            .hero-subtitle {
+                font-size: 13px;
+                margin-bottom: 10px;
+                line-height: 1.4;
+            }
+
+            .hero-button {
+                font-size: 14px;
+                padding: 6px 15px;
+            }
+
+            .content-section {
+                padding: 20px 15px;
+            }
+
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .section-title::after {
+                width: calc(3em + 0.4em);
+                height: 3px;
+            }
+
+            .card {
+                width: 100%;
+                min-width: auto;
+                margin-bottom: 15px;
+                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                transform: none;
+            }
+            
+            .card:active {
+                transform: scale(0.98);
+                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-image {
+                height: 150px;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .card-content {
+                padding: 15px;
+            }
+
+            .card-title {
+                font-size: 16px;
+                min-height: auto;
+                -webkit-line-clamp: 3;
+            }
+            
+            .card-meta {
+                margin-top: 10px;
+                font-size: 12px;
+            }
+
+            .theory-latest-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .theory-column, .latest-column {
+                width: 100%;
+                padding: 15px;
+                border-radius: 12px;
+            }
+            
+            .column-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .theory-list li, .latest-list li {
+                margin-bottom: 12px;
+                padding-bottom: 12px;
+            }
+            
+            .theory-list li a, .latest-list li a {
+                font-size: 14px;
+            }
+
+            .carousel-container {
+                padding: 0;
+                margin-top: 15px;
+            }
+
+            .carousel-wrapper {
+                gap: 15px;
+            }
+            
+            .carousel-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .announcement-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 15px 0;
+            }
+
+            .announcement-content {
+                margin-right: 0;
+            }
+            
+            .announcement-title {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .announcement-tag {
+                padding: 2px 8px;
+                font-size: 11px;
+                margin-bottom: 5px;
+            }
+
+            .announcement-action {
+                margin-top: 5px;
+                align-self: flex-end;
+            }
+            
+            .announcement-action .details-link {
+                font-size: 14px;
+            }
+
+            .page-footer {
+                padding: 20px 0;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            .footer-logo {
+                max-width: 100px;
+                margin-bottom: 5px;
+            }
+            
+            .footer-copyright {
+                font-size: 12px;
+            }
+
+            .page-header {
+                margin-top: 40px;
+                padding: 10px 0;
+            }
+            
+            /* 增强侧边栏体验 */
+            .sidebar {
+                width: 220px;
+                padding: 50px 20px 20px;
+            }
+            
+            .sidebar nav .nav-list {
+                margin-top: 20px;
+            }
+            
+            .sidebar nav .nav-list li a {
+                padding: 12px 15px;
+                font-size: 16px;
+                display: block;
+                text-align: center;
+                margin: 10px 0;
+            }
+            
+            /* 改善状态栏样式 */
+            .status-bar {
+                height: 45px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+            
+            .status-menu-button {
+                padding: 5px 8px;
+                font-size: 26px;
+            }
+            
+            /* 添加页面过渡动画 */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .content-section, .card, .theory-column, .latest-column {
+                animation: fadeInUp 0.5s ease-out;
+            }
+
+            .hero-section {
+                margin-top: 0;
+            }
+
+            .mobile-search-area {
+                background-color: #fff;
+            }
+
+            /* 增加样式：让状态栏图标和文本间距更小 */
+            .status-bar .logo-area {
+                gap: 3px; /* 减小间距 */
+            }
+
+            header.page-header {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 180px;
+            }
+            
+            .hero-text-box {
+                max-width: 250px;
+                padding: 12px;
+            }
+            
+            .hero-title {
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+            
+            .hero-subtitle {
+                font-size: 11px;
+                line-height: 1.4;
+                margin-bottom: 8px;
+            }
+            
+            .hero-button {
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .card-image {
+                height: 130px;
+            }
+            
+            .column-title {
+                font-size: 16px;
+            }
+            
+            .announcement-title {
+                font-size: 15px;
+            }
+            
+            .dots-container {
+                bottom: 10px;
+            }
+            
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        .footer-logo-area {
+            display: flex;
+            margin-bottom: 25px;
+            justify-content: flex-start;
+            /* 图标靠左对齐 */
+            align-items: flex-start;
+            /* 图标靠上对齐 */
+        }
+
+        .footer-logo-img {
+            width: 40px;
+            /* 缩小图标宽度 */
+            height: 40px;
+            /* 缩小图标高度 */
+        }
+
+        .footer-divider {
+            border: none;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 90%;
+            margin: 0 auto 25px auto;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        /* 新增：侧边栏按钮和菜单 */
+        .sidebar-button {
+            display: none;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            z-index: 1001;
+            cursor: pointer;
+        }
+        /* 修改侧边栏：默认完全隐藏，只有添加 open 类时显示 */
+        .sidebar {
+            display: none; /* 默认完全隐藏 */
+            position: fixed;
+            top: 0;
+            right: 0; /* open 时显示在右侧 */
+            width: 175px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 30px 20px;
+            border-left: 3px solid #8B0000;
+        }
+        .sidebar.open {
+            display: block;
+            right: 0;
+        }
+        /* 将侧边栏内导航菜单设置为垂直排列 */
+        .sidebar nav .nav-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar nav .nav-list li {
+            margin: 10px 0;
+        }
+        .sidebar nav .nav-list li a {
+            padding: 10px 15px;
+            background-color: #8B0000;
+            border-radius: 4px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar nav .nav-list li a:hover {
+            background-color: #a52a2a;
+        }
+        
+        @media (max-width: 768px) {
+            /* 手机端隐藏原导航栏 */
+            .main-nav { display: none; }
+            .sidebar-button { display: block; }
+            .header-content .logo-area { display: none; }
+        }
+
+        /* 修改：红色状态栏默认隐藏，仅在手机适配时显示 */
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--primary-color, #982820); /* 使用与desktop版本相同的颜色 */
+            color: white;
+            height: 50px;
+            display: none; /* 默认隐藏，只在移动端显示 */
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            z-index: 1100;
+            transform: translateY(-100%); /* 起始位置在屏幕外 */
+            animation: statusBarSlideDown 0.5s ease-out 0.2s forwards; /* 添加下滑入场动画 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 添加阴影增强立体感 */
+        }
+        
+        @keyframes statusBarSlideDown {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            .status-bar {
+                display: flex;
+            }
+        }
+        /* 红色状态栏内部只有菜单按钮 */
+        .status-bar .status-left {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* 减小logo和文字间距 */
+            animation: fadeSlideIn 0.6s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .status-bar .status-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .status-bar .status-left img {
+            height: 30px;
+        }
+        
+        .status-bar .status-text {
+            font-size: 16px;
+        }
+        
+        .status-bar .status-menu-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeRotate 0.5s ease-out 0.7s forwards;
+        }
+        
+        @keyframes fadeRotate {
+            0% {
+                opacity: 0;
+                transform: rotate(-90deg);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(0);
+            }
+        }
+
+        .carousel-arrow.next {
+            right: 0px;
+            /* 调整箭头位置 */
+        }
+        
+        /* 移动端轮播优化 */
+        @media (max-width: 768px) {
+            .carousel-container {
+                position: relative;
+                overflow: hidden;
+                touch-action: pan-y; /* 允许页面垂直滚动，阻止水平滚动干扰轮播 */
+            }
+            
+            .carousel-wrapper {
+                will-change: transform; /* 优化动画性能 */
+                transition: transform 0.3s ease-out;
+            }
+            
+            .carousel-wrapper.swiping {
+                transition: none; /* 滑动时禁用过渡动画 */
+            }
+            
+            .classroom-carousel .carousel-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+                opacity: 0.8;
+                background-color: rgba(139, 0, 0, 0.5);
+            }
+            
+            .classroom-carousel .carousel-arrow:active {
+                transform: translateY(-50%) scale(0.95);
+                background-color: rgba(139, 0, 0, 0.7);
+            }
+            
+            .classroom-carousel .card {
+                flex-basis: calc(50% - 15px); /* 移动端默认显示2个卡片 */
+                min-width: 200px;
+                transition: transform 0.2s ease;
+            }
+            
+            .classroom-carousel .card:active {
+                transform: scale(0.98);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .classroom-carousel .card {
+                flex-basis: 100%; /* 小屏幕只显示1个卡片 */
+                min-width: 0;
+            }
+            
+            .classroom-carousel .carousel-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+        }
+
+        /* 桌面版显示三个卡片 */
+        
+        /* 欢迎文字淡入效果 */
+        .welcome-text {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            color: #000; /* 设置字体颜色为黑色 */
+        }
+        
+        .welcome-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #8B0000;
+            animation: welcomeTextReveal 1.5s ease-out forwards;
+        }
+        
+        @keyframes welcomeTextReveal {
+            0% {
+                width: 100%;
+                left: 0;
+            }
+            50% {
+                width: 100%;
+                left: 0;
+            }
+            100% {
+                width: 0%;
+                left: 100%;
+            }
+        }
+        
+        /* 为卡片添加渐变悬停效果 */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: linear-gradient(to bottom, rgba(139, 0, 0, 0.1), transparent);
+            transition: height 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .card:hover::before {
+            height: 100%;
+        }
+        
+        .card-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-image {
+            transform: scale(1.05);
+        }
+        
+        /* 轮播自动切换效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { 
+                transform: translateX(30px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from { 
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes scaleIn {
+            from { 
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .animate-fadein {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .animate-slide-right {
+            animation: slideInRight 0.5s ease forwards;
+        }
+        
+        .animate-slide-left {
+            animation: slideInLeft 0.5s ease forwards;
+        }
+        
+        .animate-scale {
+            animation: scaleIn 0.5s ease forwards;
+        }
+
+        .footer-logo {
+            display: block;
+            margin: 0 auto 10px auto; /* Reduced from 20px to 10px */
+            max-width: 150px;
+            height: auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInLogo 1.5s ease forwards;
+            opacity: 0;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        @keyframes fadeInLogo {
+            0% { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Removed logoFloat animation */
+        /* @keyframes logoFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        } */
+
+        .footer-copyright {
+            font-size: 16px;
+            color: white;
+            animation: fadeInText 2s ease-in-out forwards;
+            margin-top: 10px;
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 侧边栏导航也添加动画，但只在打开时播放 */
+        .sidebar.open .nav-list li {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: navItemSlideIn 0.5s forwards ease-out;
+        }
+
+        /* 为侧边栏每个导航项设置不同的延迟 */
+        .sidebar.open .nav-list li:nth-child(1) { animation-delay: 0.1s; }
+        .sidebar.open .nav-list li:nth-child(2) { animation-delay: 0.2s; }
+        .sidebar.open .nav-list li:nth-child(3) { animation-delay: 0.3s; }
+        .sidebar.open .nav-list li:nth-child(4) { animation-delay: 0.4s; }
+        .sidebar.open .nav-list li:nth-child(5) { animation-delay: 0.5s; }
+        .sidebar.open .nav-list li:nth-child(6) { animation-delay: 0.6s; }
+
+        .hero-button:hover {
+            background-color: #a52a2a;
+        }
+
+        /* 为移动端添加状态栏搜索框 */
+        .mobile-search-area {
+            display: none; /* 默认隐藏，仅在移动端显示 */
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            padding: 0 8px;
+            background-color: rgba(255, 255, 255, 0.2); /* 默认使用半透明白色背景 */
+            width: 120px; /* 默认展开状态 */
+            height: 30px;
+            margin-right: 10px;
+            overflow: hidden;
+            opacity: 0; /* 初始不可见 */
+            animation: searchAppear 0.6s ease-out 0.5s forwards; /* 添加出现动画 */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        @keyframes searchAppear {
+            0% {
+                opacity: 0;
+                transform: translateX(20px);
+                width: 40px;
+            }
+            60% {
+                width: 130px;
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+                width: 120px;
+            }
+        }
+        
+        .mobile-search-area:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mobile-search-area .search-icon {
+            width: 14px;
+            height: 14px;
+            margin-right: 5px;
+            opacity: 0.8;
+        }
+        
+        .mobile-search-area input[type="search"] {
+            padding: 4px 0;
+            border: none;
+            outline: none;
+            width: 100%; /* 输入框默认可见 */
+            flex-grow: 1;
+            background-color: transparent;
+            font-size: 13px;
+            color: #fff;
+            opacity: 1; /* 默认显示 */
+        }
+        
+        /* 移除focus-within样式，因为默认已经展开 */
+
+        /* 移动端搜索框占位符颜色 */
+        .mobile-search-area input[type="search"]::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-search-area {
+                display: flex;
+            }
+            
+            /* 桌面版搜索框在移动端不显示 */
+            .header-content .search-area {
+                display: none;
+            }
+        }
+
+        /* 修改：在移动端给页面添加上边距，防止被status-bar遮挡 */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 50px; /* 与status-bar的高度相同 */
+            }
+            
+            /* 移动端隐藏搜索栏，让页面更紧凑 */
+            .header-content .search-area {
+                display: none;
+            }
+            
+            /* 简化 header 以腾出更多空间 */
+            .page-header {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                padding: 0.5rem 1rem;
+                min-height: unset;
+                height: auto;
+                margin-bottom: 0;
+            }
+            
+            /* 调整 header 内容, 更紧凑 */
+            .header-content {
+                padding: 0;
+                margin: 0;
+                gap: 5px;
+            }
+            
+            /* 扩大轮播图区域 */
+            .hero-section {
+                height: 320px; /* 增加高度，占据原本搜索框的空间 */
+                margin-top: 0;
+            }
+            
+            /* 轮播图内容位置调整 */
+            .hero-text-box {
+                left: 15px;
+                max-width: 300px;
+            }
+            
+            /* 增强轮播指示器 */
+            .dots-container {
+                bottom: 15px;
+            }
+            
+            .dot {
+                width: 10px;
+                height: 10px;
+                margin: 0 5px;
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+            
+            .dot.active {
+                background-color: white;
+            }
+            
+            /* 手机端卡片样式优化 */
+            .card {
+                width: 100%;
+                min-width: unset;
+                margin-bottom: 15px;
+            }
+            
+            .card-image {
+                height: 180px; /* 调整图片高度适应手机屏幕 */
+            }
+            
+            .card-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* 确保图片填充整个容器且不变形 */
+            }
+            
+            /* 轮播里的卡片样式调整 */
+            .classroom-carousel .card {
+                flex-basis: 100%;
+                min-width: 250px;
+            }
+            
+            /* 调整卡片网格布局 */
+            .card-grid {
+                gap: 15px;
+            }
+            
+            /* 手机端隐藏原导航栏 */
+            .main-nav { display: none; }
+            .sidebar-button { display: block; }
+            .header-content .logo-area { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 修改：红色状态栏内容，删除运行中字样及前面的图片，改为放置 logo-area -->
+    <div class="status-bar">
+        <div class="status-left">
+            <div class="logo-area">
+                <div class="logo-img">
+                    <img src="./img/logo.png" alt="Logo">
+                </div>
+                <span class="logo-text">河南大学党委宣传部</span>
+            </div>
+        </div>
+        <div class="status-right">
+            <div class="mobile-search-area">
+                <img src="./img/search.png" alt="搜索图标" class="search-icon">
+                <input type="search" placeholder="搜索">
+            </div>
+            <button id="sidebarToggle" class="status-menu-button">≡</button>
+        </div>
+    </div>
+    <!-- 调整 header 顶部距离，防止被状态栏遮住 -->
+    <header class="page-header">
+        <div class="header-content">
+            <!-- 修改：仅桌面版显示 logo-area -->
+            <div class="logo-area desktop-only">
+                <div class="logo-img">
+                    <img src="./img/logo.png" alt="Logo">
+                </div>
+                <span class="logo-text"><span class="welcome-text">河南大学党委宣传部欢迎您</span></span>
+            </div>
+            <div class="search-area">
+                <img src="./img/search.png" alt="搜索图标" class="search-icon">
+                <input type="search" placeholder="搜索">
+            </div>
+        </div>
+    </header>
+
+    <!-- 新增：手机端侧边菜单 -->
+    <aside class="sidebar" id="sidebarMenu">
+        <nav>
+            <ul class="nav-list">
+                <li><a href="./jgou.html">机构设置</a></li>
+                <li><a href="./inner.html">新闻快报</a></li>
+                <li><a href="./inner.html">理论学习</a></li>
+                <li><a href="./inner.html">思政课堂</a></li>
+                <li><a href="./inner.html">通知公告</a></li>
+                <li><a href="./inner.html">文件资料</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- 导航栏 -->
+    <nav class="main-nav">
+        <ul class="nav-list">
+            <li><a href="./jgou.html">机构设置</a></li>
+            <li><a href="./inner.html">新闻快报</a></li>
+            <li><a href="./inner.html">理论学习</a></li>
+            <li><a href="./inner.html">思政课堂</a></li>
+            <li><a href="./inner.html">通知公告</a></li>
+            <li><a href="./inner.html">文件资料</a></li>
+            <!-- 其他导航项... -->
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Banner/Hero -->
+        <section class="hero-section">
+            <div class="slides-wrapper">
+                <!-- 第一个幻灯片 (用第一个新闻图做背景) -->
+                <div id class="slide active" style="background-color: #e9c46a;"> <!-- 假装这是第一张图的颜色 -->
+                    <!-- 背景图通过 style 或 CSS 类设置 -->
+                </div>
+                <!-- 第二个幻灯片 (用第二个新闻图做背景) -->
+                <div class="slide" style="background-color: #f4a261;"> <!-- 假装这是第二张图的颜色 -->
+                </div>
+                <!-- 第三个幻灯片 (用第三个新闻图做背景) -->
+                <div class="slide" style="background-color: #e76f51;"> <!-- 假装这是第三张图的颜色 -->
+                </div>
+                <!-- 如果还有更多卡片，可以继续加 slide -->
+            </div>
+            <div class="hero-text-box">
+                <h1 class="hero-title">弘扬党的优良传统</h1>
+                <p class="hero-subtitle">坚持党的领导，加强党的建设，深入学习贯彻习近平新时代中国特色社会主义思想，为实现中华民族伟大复兴的中国梦而不懈奋斗。</p>
+                <a href="./inner.html" class="hero-button">了解更多</a>
+            </div>
+            <div class="hero-arrow left" id="prevBtn"></div>
+            <div class="hero-arrow right" id="nextBtn"></div>
+            <div class="dots-container"></div>
+        </section>
+
+        <!-- 新闻资讯 -->
+        <section class="content-section container">
+            <h2 class="section-title"><span>新闻</span><span>资讯</span></h2>
+            <div class="card-grid" id="news-card-grid">
+                <article class="card">
+                    <img src="./img/news_1.png" alt="news_1" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title"><a href="./inner.html">宣传部党支部召开“习近平文化思想”专题理论学习会</a></h3>
+                        <p class="card-meta"><span>2024年10月29日 15:01</span></p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="./img/news_2.png" alt="news_2" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title"><a href="./inner.html">凝心聚力强文化 提质进位创辉煌 ——党委宣传部、总务处、教育发展基金会办公室、哲学与公共管理学院、经济学院 联合举办主题党日活动-宣传部思想论坛 </a></h3>
+                        <p class="card-meta"><span>2024年10月27日 16:02</span></p>
+                    </div>
+                </article>
+                <article class="card ">
+                    <img src="./img/news_3.png" alt="news_3" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title"><a href="./inner.html">河南省报业协会秘书长李宜鹏一行到我校调研座谈-宣传部思想论坛</a></h3>
+                        <p class="card-meta"><span>2024年10月25日 09:47</span></p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 理论学习 / 最新文章 -->
+            <h2 class="section-title"><span>理论</span><span>学习</span></h2>
+            <div class="theory-latest-grid">
+                <div class="theory-column">
+                    <h3 class="column-title">重点专题</h3>
+                    <ul class="theory-list">
+                        <li><a href="./inner.html">习近平：培养德智体美劳全面发展的社会主义建设者和接班人</a></li>
+                        <li><a href="./inner.html">习近平：在全国科技大会、国家科学技术奖励大会、两院院士大会上的讲话</a></li>
+                        <li><a href="./inner.html">纪律是管党治党的"戒尺"——习近平总书记关于党的纪律和规矩相关重要论述</a></li>
+                        <!-- 更多理论... -->
+                    </ul>
+                </div>
+                <div class="latest-column">
+                    <h3 class="column-title">最新文章</h3>
+                    <ul class="latest-list">
+                        <li>
+                            <a href="./inner.html">必须坚持人民至上</a>
+                            <div class="latest-meta">
+                                <span>2024-04-08</span>
+                                <span class="views">1280</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="./inner.html">习近平：培养德智体美劳全面发展的社会主义建设者和接班人</a>
+                            <div class="latest-meta">
+                                <span>2024-02-18</span>
+                                <span class="views">960</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="./inner.html">推进新时代党的建设新的伟大工程</a>
+                            <div class="latest-meta">
+                                <span>2024-02-15</span>
+                                <span class="views">820</span>
+                            </div>
+                        </li>
+                        <!-- 更多文章... -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 思政课堂 -->
+        <section class="content-section container">
+            <h2 class="section-title"><span>思政</span><span>课堂</span></h2>
+            <div class="carousel-container classroom-carousel">
+                <div class="carousel-wrapper">
+                    <article class="card">
+                        <img src="./img/class_1.png" alt="class_1" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="./inner.html">我校召开学习习近平总书记在文化传承发展座谈会上的重要讲话精神研讨会</a></h3>
+                            <!-- 思政课堂卡片可能没有时间戳，或者有其他信息 -->
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./img/class_2.png" alt="class_2" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="./inner">张祎捷为全校学生宣讲党的二十大精神</a></h3>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./img/class_3.jpg" alt="class_3" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="./inner">我校举行国有资产管理和招标采购业务培训会</a></h3>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./img/class_3.jpg" alt="class_4" class="card-image"> <!-- 可以换新图 -->
+                        <div class="card-content">
+                            <h3 class="card-title"><a href="./inner.html">这是第四个思政课堂卡片示例标题</a></h3> <!-- 可以换新标题 -->
+                        </div>
+                    </article>
+                </div>
+                <!-- 轮播箭头 -->
+                <button class="carousel-arrow prev" id="classroomPrevBtn"><i class="fa fa-chevron-left"></i></button>
+                <button class="carousel-arrow next" id="classroomNextBtn"><i class="fa fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- 通知公告 (占位符) -->
+        <section class="content-section container">
+            <div class="content-box announcement-box">
+                <h2 class="section-title"><span>通知</span><span>公告</span></h2>
+
+                <!-- 把原来的 placeholder 删掉，换成下面的列表容器 -->
+                <div class="announcements-list">
+                    <article class="announcement-item">
+                        <!-- 左边的内容区域 -->
+                        <div class="announcement-content">
+                            <span class="announcement-tag important">重要通知</span>
+                            <h3 class="announcement-title">
+                                <a href="./inner.html">关于开展 2024 年度党支部书记培训的通知</a>
+                            </h3>
+                            <div class="announcement-meta">
+                                <span class="date">2024-02-20</span>
+                                <span class="views">526</span>
+                            </div>
+                        </div>
+                        <!-- 右边的操作链接 -->
+                        <div class="announcement-action">
+                            <a href="./inner.html" class="details-link">查看详情 →</a>
+                        </div>
+                    </article>
+                    <article class="announcement-item">
+                        <!-- 左边的内容区域 -->
+                        <div class="announcement-content">
+                            <span class="announcement-tag important">重要通知</span>
+                            <h3 class="announcement-title">
+                                <a href="./inner.html">关于开展 2024 年度党支部书记培训的通知</a>
+                            </h3>
+                            <div class="announcement-meta">
+                                <span class="date">2024-02-20</span>
+                                <span class="views">526</span>
+                            </div>
+                        </div>
+                        <!-- 右边的操作链接 -->
+                        <div class="announcement-action">
+                            <a href="./inner.html" class="details-link">查看详情 →</a>
+                        </div>
+                    </article>
+                    <!-- 如果有更多通知，可以继续在这里添加 <article class="announcement-item">...</article> -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="page-footer">
+        <img src="./img/henu_logo.png" alt="Footer Logo" class="footer-logo">
+        <style>
+            .page-footer {
+                background-color: #8B0000;
+                color: #fff;
+                text-align: center;
+                padding: 40px 0;
+                font-size: 14px;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(135deg, #800000, #8B0000, #990000, #8B0000, #800000);
+                background-size: 400% 400%;
+                animation: gradientBG 15s ease infinite;
+                margin-top: 20px; /* Reduced from default value */
+            }
+
+            @keyframes gradientBG {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            .footer-logo {
+                display: block;
+                margin: 0 auto 10px auto; /* Reduced from 20px to 10px */
+                max-width: 150px;
+                height: auto;
+                position: relative;
+                z-index: 1;
+                animation: fadeInLogo 1.5s ease forwards;
+                opacity: 0;
+                filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+                transition: transform 0.3s ease;
+            }
+
+            .footer-logo:hover {
+                transform: scale(1.1) rotate(5deg);
+            }
+
+            @keyframes fadeInLogo {
+                0% { 
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                100% { 
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+        <p class="footer-copyright">
+            © 2024 河南大学党委宣传部.
+            <br>
+            技术支持: 河南大学网站工作室
+        </p>
+        <style>
+            .footer-copyright {
+                font-size: 16px;
+                color: white;
+                animation: fadeInText 2s ease-in-out forwards;
+                margin-top: 10px;
+                position: relative;
+                display: inline-block;
+                opacity: 0;
+            }
+            
+            @keyframes fadeInText {
+                0% {
+                    opacity: 0;
+                    transform: translateY(15px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .footer-copyright::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 50%;
+                background-color: white;
+                transition: all 0.5s ease;
+                opacity: 0;
+            }
+            
+            .footer-copyright:hover::after {
+                width: 80%;
+                left: 10%;
+                opacity: 0.8;
+            }
+            
+            /* Add particles effect */
+            .page-footer::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: 
+                    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+                background-size: 50px 50px;
+                animation: particleMove 8s linear infinite;
+            }
+            
+            @keyframes particleMove {
+                0% { background-position: 0 0; }
+                100% { background-position: 50px 50px; }
+            }
+            
+            /* Mobile responsiveness for footer */
+            @media (max-width: 768px) {
+                .footer-logo {
+                    max-width: 120px;
+                    animation: fadeInLogo 1.5s ease forwards;
+                    opacity: 0;
+                }
+                
+                .footer-copyright {
+                    font-size: 14px;
+                }
+                
+                .page-footer {
+                    padding: 30px 0;
+                }
+            }
+        </style>
+    </footer>
+
+    <script>
+
+        document.querySelectorAll('.slide').forEach(element => {
+            element.addEventListener('click', () => {
+                window.location.href = './inner.html'; // 所有class元素跳转同一地址 //
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const slidesWrapper = document.querySelector('.slides-wrapper');
+            const newsCardGrid = document.getElementById('news-card-grid'); // 用 ID 获取新闻卡片容器
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.querySelector('.dots-container');
+            const heroSection = document.querySelector('.hero-section'); // 用于暂停自动播放
+
+            let currentIndex = 0;
+            let totalSlides = 0;
+            let slides = []; // 用来存储动态创建的 slide 元素
+            let autoPlayInterval = null; // 自动播放计时器
+            const autoPlayDelay = 5000; // 自动播放间隔
+
+            // --- 1. 获取图片 URL 并创建 Slides ---
+            const imageUrls = ['./img/background.jpg', './img/footer.jpg', './img/tubiao.jpg']; // 预设的图片 URL 数组
+            /* if (newsCardGrid) {
+                const cards = newsCardGrid.querySelectorAll('.card');
+                cards.forEach(card => {
+                    // 修改这里：直接在 card 下找 img，不再需要 card-image div
+                    const imgElement = card.querySelector('img');
+                    if (imgElement && imgElement.src) {
+                        imageUrls.push(imgElement.src);
+                    } else {
+                        console.warn('在卡片中没有找到 img 标签或 src 属性:', card); // 加个提示
+                    }
+                });
+                console.log('找到的图片URLs:', imageUrls); // 调试用
+            } else {
+                console.error('找不到新闻卡片容器 #news-card-grid');
+            } */
+
+            // --- 2. 根据 URL 创建幻灯片 ---
+            if (slidesWrapper && dotsContainer) { // 确保容器存在
+                slidesWrapper.innerHTML = ''; // 清空可能存在的旧内容
+                dotsContainer.innerHTML = ''; // 清空可能存在的旧圆点
+
+                imageUrls.forEach((url, index) => {
+                    // 创建 slide
+                    const slide = document.createElement('div');
+                    slide.classList.add('slide');
+                    // 这里要确保 url 是有效的
+                    if (url) {
+                        slide.style.backgroundImage = `url('${url}')`; // 设置背景图！
+                    } else {
+                        // 如果 URL 无效，可以设置一个默认背景或颜色
+                        slide.style.backgroundColor = '#cccccc';
+                        console.warn(`图片 URL 无效: ${url} at index ${index}`);
+                    }
+                    slidesWrapper.appendChild(slide);
+
+                    // (可选) 创建 dot
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    dot.addEventListener('click', () => {
+                        if (totalSlides > 0) { // 确保 totalSlides > 0 才能调用
+                            goToSlide(index);
+                            resetAutoPlay(); // 点击圆点后重置自动播放计时
+                        }
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+
+                // 更新 slides 变量和数量
+                slides = slidesWrapper.querySelectorAll('.slide');
+                totalSlides = slides.length;
+
+                // --- 3. 初始化轮播图 (如果至少有一张图) ---
+                if (totalSlides > 0) {
+                    // 动态设置容器和幻灯片宽度
+                    slidesWrapper.style.width = `${totalSlides * 100}%`;
+                    slides.forEach(slide => {
+                        slide.style.width = `${100 / totalSlides}%`;
+                    });
+
+                    updateDots(); // 更新圆点状态
+                    updateSlidePosition(); // 定位到第一张
+
+                    // --- 轮播逻辑函数 ---
+                    function updateSlidePosition() {
+                        const offset = -currentIndex * (100 / totalSlides);
+                        slidesWrapper.style.transform = `translateX(${offset}%)`;
+                    }
+
+                    function updateDots() {
+                        const dots = dotsContainer.querySelectorAll('.dot');
+                        dots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentIndex);
+                        });
+                    }
+
+                    function goToSlide(index) {
+                        if (totalSlides <= 0) return; // 防止错误
+                        currentIndex = index;
+                        updateSlidePosition();
+                        updateDots();
+                    }
+
+                    function nextSlide() {
+                        if (totalSlides <= 0) return;
+                        currentIndex = (currentIndex + 1) % totalSlides;
+                        goToSlide(currentIndex);
+                    }
+
+                    function prevSlide() {
+                        if (totalSlides <= 0) return;
+                        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                        goToSlide(currentIndex);
+                    }
+
+                    function startAutoPlay() {
+                        clearInterval(autoPlayInterval); // 先清除旧的
+                        if (totalSlides > 1) { // 只有一张图就不自动播放了
+                            autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+                        }
+                    }
+
+                    function resetAutoPlay() {
+                        clearInterval(autoPlayInterval);
+                        if (totalSlides > 1) {
+                            autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+                        }
+                    }
+
+                    // --- 事件监听 ---
+                    if (prevBtn && nextBtn) { // 确保按钮存在
+                        nextBtn.addEventListener('click', () => {
+                            nextSlide();
+                            resetAutoPlay();
+                        });
+                        prevBtn.addEventListener('click', () => {
+                            prevSlide();
+                            resetAutoPlay();
+                        });
+                    } else {
+                        console.warn("找不到前后按钮");
+                    }
+
+
+                    // (可选) 鼠标悬停暂停/恢复
+                    if (heroSection) {
+                        heroSection.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+                        heroSection.addEventListener('mouseleave', startAutoPlay);
+                    }
+
+                    // 启动自动播放
+                    startAutoPlay();
+
+                } else {
+                    // 如果没有图片，可以隐藏箭头和圆点
+                    if (prevBtn) prevBtn.style.display = 'none';
+                    if (nextBtn) nextBtn.style.display = 'none';
+                    if (dotsContainer) dotsContainer.style.display = 'none';
+                    console.log("没有找到新闻图片来创建轮播图。 QAQ");
+                }
+            } else {
+                console.error("找不到轮播图容器 .slides-wrapper 或 .dots-container");
+            }
+
+
+        }); // DOMContentLoaded 结束
+
+        function setupClassroomCarousel() {
+            const container = document.querySelector('.classroom-carousel');
+            if (!container) return; // 如果找不到容器就退出
+
+            const wrapper = container.querySelector('.carousel-wrapper');
+            const items = wrapper.querySelectorAll('.card');
+            const prevBtn = container.querySelector('#classroomPrevBtn');
+            const nextBtn = container.querySelector('#classroomNextBtn');
+            const totalItems = items.length;
+            const itemsPerPage = getItemsPerPage(); // 根据屏幕宽度动态决定显示数量
+            
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isSwiping = false;
+            let initialTransform = 0;
+            
+            // 动画效果类型
+            const animationTypes = ['animate-fadein', 'animate-slide-right', 'animate-slide-left', 'animate-scale'];
+            let currentAnimationType = 0;
+            
+            // 根据屏幕宽度返回每页显示的卡片数量
+            function getItemsPerPage() {
+                if (window.innerWidth <= 480) return 1;
+                if (window.innerWidth <= 768) return 2;
+                return 3; // 默认桌面版显示3个
+            }
+
+            let classroomAutoPlayInterval = null; // 计时器变量
+            const classroomAutoPlayDelay = 6000; // 6 秒间隔！
+
+            if (totalItems <= itemsPerPage) { // 如果卡片不够多，就不需要轮播
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+                return;
+            }
+
+            let currentIndex = 0; // 当前显示的第一个卡片的索引
+            let cardWidth = 0; // 卡片宽度
+            let gap = 0; // 间距
+            
+            // 为所有卡片添加淡入动画
+            function applyCardAnimations() {
+                // 先清除所有卡片上的动画类
+                items.forEach(item => {
+                    animationTypes.forEach(animType => {
+                        item.classList.remove(animType);
+                    });
+                    item.style.opacity = '0';
+                });
+                
+                // 获取当前可见的卡片
+                const visibleCards = [];
+                for (let i = currentIndex; i < currentIndex + itemsPerPage && i < totalItems; i++) {
+                    visibleCards.push(items[i]);
+                }
+                
+                // 使用当前动画类型
+                const animClass = animationTypes[currentAnimationType];
+                
+                // 应用动画，延迟依次增加
+                visibleCards.forEach((card, idx) => {
+                    setTimeout(() => {
+                        card.classList.add(animClass);
+                        card.style.opacity = '1';
+                    }, idx * 150); // 每张卡片延迟150ms
+                });
+                
+                // 切换到下一种动画类型
+                currentAnimationType = (currentAnimationType + 1) % animationTypes.length;
+            }
+
+            function calculateDimensions() {
+                if (items.length > 0) {
+                    cardWidth = items[0].offsetWidth; // 获取实际渲染宽度
+                    gap = parseFloat(getComputedStyle(wrapper).gap) || 0; // 获取实际间距
+                }
+            }
+
+            function updateCarousel() {
+                calculateDimensions(); // 每次更新前重新计算一下尺寸，应对窗口变化
+                if (cardWidth === 0) return; // 防止除零错误
+
+                const moveDistance = cardWidth + gap; // 每次移动的距离 = 卡片宽度 + 间距
+                wrapper.style.transform = `translateX(-${currentIndex * moveDistance}px)`;
+
+                // 更新按钮状态
+                if (prevBtn) prevBtn.disabled = (currentIndex === 0);
+                if (nextBtn) nextBtn.disabled = (currentIndex >= totalItems - itemsPerPage);
+                
+                // 在移动端更新按钮可见性
+                if (window.innerWidth <= 768) {
+                    if (prevBtn) prevBtn.style.opacity = currentIndex === 0 ? '0' : '0.8';
+                    if (nextBtn) nextBtn.style.opacity = currentIndex >= totalItems - itemsPerPage ? '0' : '0.8';
+                }
+                
+                // 应用卡片动画
+                applyCardAnimations();
+            }
+
+            function startClassroomAutoPlay() {
+                stopClassroomAutoPlay(); // 先清除可能存在的旧计时器
+                if (totalItems > itemsPerPage) { // 只有在需要轮播时才启动
+                    classroomAutoPlayInterval = setInterval(() => {
+                        // 如果已经在最后一页，则回到第一页；否则前进一页
+                        if (currentIndex >= totalItems - itemsPerPage) {
+                            currentIndex = 0;
+                        } else {
+                            currentIndex++;
+                        }
+                        updateCarousel();
+                    }, classroomAutoPlayDelay);
+                }
+            }
+
+            function stopClassroomAutoPlay() {
+                clearInterval(classroomAutoPlayInterval);
+            }
+
+            function resetClassroomAutoPlay() {
+                stopClassroomAutoPlay();
+                startClassroomAutoPlay();
+            }
+
+            // --- 事件监听 ---
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (currentIndex < totalItems - itemsPerPage) {
+                        currentIndex++;
+                        updateCarousel();
+                        resetClassroomAutoPlay();
+                    }
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel();
+                        resetClassroomAutoPlay();
+                    }
+                });
+            }
+            
+            // 触摸事件处理
+            wrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                initialTransform = getComputedStyle(wrapper).transform;
+                isSwiping = true;
+                wrapper.classList.add('swiping'); // 添加滑动类，禁用过渡
+                stopClassroomAutoPlay();
+            }, { passive: true });
+            
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+                
+                const currentX = e.touches[0].clientX;
+                const diffX = currentX - touchStartX;
+                
+                // 计算边界条件：第一页不能右滑，最后一页不能左滑
+                if ((currentIndex === 0 && diffX > 0) || 
+                    (currentIndex >= totalItems - itemsPerPage && diffX < 0)) {
+                    return;
+                }
+                
+                // 应用拖动效果，但限制拖动范围
+                const maxDrag = cardWidth * 0.5; // 最大拖动距离为卡片宽度的一半
+                const limitedDiff = Math.max(Math.min(diffX, maxDrag), -maxDrag);
+                
+                const moveDistance = cardWidth + gap;
+                const newTransform = -currentIndex * moveDistance + limitedDiff;
+                wrapper.style.transform = `translateX(${newTransform}px)`;
+            }, { passive: true });
+            
+            wrapper.addEventListener('touchend', (e) => {
+                if (!isSwiping) return;
+                isSwiping = false;
+                wrapper.classList.remove('swiping'); // 移除滑动类，恢复过渡
+                
+                touchEndX = e.changedTouches[0].clientX;
+                const diffX = touchEndX - touchStartX;
+                
+                // 如果滑动距离超过卡片宽度的30%，则切换到下一张/上一张
+                if (Math.abs(diffX) > cardWidth * 0.3) {
+                    if (diffX > 0 && currentIndex > 0) {
+                        // 右滑，显示上一个
+                        currentIndex--;
+                    } else if (diffX < 0 && currentIndex < totalItems - itemsPerPage) {
+                        // 左滑，显示下一个
+                        currentIndex++;
+                    }
+                }
+                
+                // 无论如何，都要重置位置
+                updateCarousel();
+                startClassroomAutoPlay();
+            }, { passive: true });
+            
+            // 处理触摸取消事件
+            wrapper.addEventListener('touchcancel', () => {
+                if (isSwiping) {
+                    isSwiping = false;
+                    wrapper.classList.remove('swiping');
+                    updateCarousel(); // 恢复到原始位置
+                    startClassroomAutoPlay();
+                }
+            }, { passive: true });
+
+            container.addEventListener('mouseenter', stopClassroomAutoPlay);
+            container.addEventListener('mouseleave', startClassroomAutoPlay);
+
+
+            // --- 处理窗口大小变化 ---
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    // 更新每页显示数量
+                    const newItemsPerPage = getItemsPerPage();
+                    // 如果显示数量变化，可能需要重新计算当前索引
+                    if (newItemsPerPage !== itemsPerPage) {
+                        // 防止索引超出边界
+                        if (currentIndex > totalItems - newItemsPerPage) {
+                            currentIndex = Math.max(0, totalItems - newItemsPerPage);
+                        }
+                    }
+                    
+                    // 重新计算并更新位置
+                    updateCarousel();
+                }, 250);
+            });
+
+            // --- 初始化 ---
+            updateCarousel(); // 初始状态
+            startClassroomAutoPlay();
+        }
+
+        // 在 DOM 加载完毕后设置思政课堂轮播
+        document.addEventListener('DOMContentLoaded', setupClassroomCarousel);
+
+        // --- Reveal on Scroll Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.content-section, .card, .theory-latest-grid .theory-column, .theory-latest-grid .latest-column, .announcement-item');
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Stop observing the element after it's visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null, // relative to the viewport
+                threshold: 0.1 // Trigger when 10% of the element is visible
+                // rootMargin: '-50px' // Optional: Adjust trigger point vertically
+            });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+        // --- End Reveal on Scroll Logic ---
+
+        // 新增：侧边栏切换逻辑
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        sidebarToggle && sidebarToggle.addEventListener('click', () => {
+            sidebarMenu.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            if (
+                sidebarMenu.classList.contains('open') &&
+                !sidebarMenu.contains(e.target) &&
+                e.target !== sidebarToggle
+            ) {
+                sidebarMenu.classList.remove('open');
+                
+                // 重置侧边栏导航项的动画
+                setTimeout(() => {
+                    const navItems = sidebarMenu.querySelectorAll('.nav-list li');
+                    navItems.forEach(item => {
+                        item.style.animation = 'none';
+                        item.offsetHeight; // 触发重绘
+                        item.style.animation = '';
+                    });
+                }, 300); // 等待侧边栏关闭动画完成
+            }
+        });
+
+        // 欢迎文字动画效果
+        function setupWelcomeTextAnimation() {
+            const welcomeText = document.querySelector('.welcome-text');
+            
+            if (welcomeText) {
+                // 初始动画完成后，添加循环效果
+                setTimeout(() => {
+                    setInterval(() => {
+                        // 移除后重新添加元素以重新触发动画
+                        const parent = welcomeText.parentNode;
+                        const clone = welcomeText.cloneNode(true);
+                        parent.removeChild(welcomeText);
+                        setTimeout(() => {
+                            parent.appendChild(clone);
+                        }, 100);
+                    }, 8000); // 每8秒重新播放一次动画
+                }, 2000); // 初始动画完成后等待2秒
+            }
+        }
+        
+        // 在DOM加载完成后初始化欢迎文字动画
+        document.addEventListener('DOMContentLoaded', setupWelcomeTextAnimation);
+    </script>
+</body>
+
+</html>

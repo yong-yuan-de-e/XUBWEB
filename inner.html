@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="author" content="author name">
+	<title>党委宣传部</title>
+	<link rel="icon" href="./img/henu-head.png" type="image/png">
+	<style>
+		/* 重置样式 */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden;
+
+			/* 移除下面的滚动条隐藏样式 
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+			*/
+		}
+
+		/* 移除下面的WebKit滚动条隐藏样式 
+		html::-webkit-scrollbar,
+		body::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* 移除容器滚动条隐藏样式 
+		.container::-webkit-scrollbar {
+			display: none;
+		}
+		*/
+
+		body {
+			font-family: "Microsoft YaHei", sans-serif;
+			line-height: 1.6;
+			color: #333;
+			background-color: #feffff;
+		}
+
+		/* 自定义滚动条样式 */
+		/* WebKit浏览器 (Chrome, Safari等) */
+		::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+		}
+
+		::-webkit-scrollbar-track {
+			background: #f1f1f1;
+			border-radius: 5px;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: rgba(152, 40, 32, 1);
+			/* 使用学校主题色 */
+			border-radius: 5px;
+			transition: background 0.3s ease;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background: #982820;
+		}
+
+		/* Firefox浏览器 */
+		* {
+			scrollbar-width: thin;
+			scrollbar-color: rgba(152, 40, 32, 1) #f1f1f1;
+		}
+
+		/* 确保内容可滚动 */
+		html,
+		body {
+			overflow-y: auto;
+		}
+
+		/* 布局辅助类 */
+		.container {
+			width: 100%;
+			min-height: 100%;
+			display: flex;
+			flex-direction: column;
+			/* 移除下面的滚动条隐藏样式
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+			*/
+		}
+
+		.flex {
+			display: flex;
+		}
+
+		.flex-col {
+			flex-direction: column;
+		}
+
+		.items-center {
+			align-items: center;
+		}
+
+		.justify-between {
+			justify-content: space-between;
+		}
+
+		/* 头部导航 */
+		.header {
+			background-color: #982820;
+			padding: 1rem 2rem;
+			color: #fff;
+			width: 100%;
+			z-index: 100;
+		}
+
+		.header-title {
+			position: relative;
+			overflow: hidden;
+			display: inline-block;
+		}
+
+		.header-title a {
+			position: relative;
+			display: inline-block;
+			color: #fff;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 24px;
+			opacity: 0;
+			transform: translateY(5px);
+			animation: titleFadeIn 0.8s ease-out forwards 0.1s;
+		}
+
+		@keyframes titleFadeIn {
+			0% {
+				opacity: 0;
+				transform: translateY(5px);
+				filter: blur(1px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+				filter: blur(0);
+			}
+		}
+
+		.header-title::after {
+			content: '';
+			position: absolute;
+			bottom: -2px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background-color: rgba(255, 255, 255, 0.7);
+			animation: underlineGrow 0.6s ease-out forwards 0.7s;
+		}
+
+		@keyframes underlineGrow {
+			0% {
+				width: 0;
+				left: 50%;
+			}
+			100% {
+				width: 100%;
+				left: 0;
+			}
+		}
+
+		/* 添加移动端导航样式 */
+		@media (max-width: 768px) {
+			.header {
+				padding: 0.75rem 1.5rem;
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+			}
+			
+			.nav-section {
+				transition: all 0.3s ease;
+				position: sticky;
+				top: 53px; /* 头部高度 */
+				z-index: 99;
+				background: #fff;
+				padding: 0.5rem 0;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			}
+			
+			.nav-tabs {
+				display: flex !important;
+				flex-wrap: nowrap !important;
+				overflow-x: auto !important;
+				scrollbar-width: none !important; /* Firefox */
+				-ms-overflow-style: none !important; /* IE and Edge */
+				white-space: nowrap !important;
+				padding: 8px 4px !important;
+				gap: 8px !important;
+				justify-content: flex-start !important;
+				background: #f8f8f8 !important;
+				border-radius: 8px !important;
+				margin-bottom: 1rem !important;
+			}
+			
+			.nav-tabs::-webkit-scrollbar {
+				display: none !important; /* Chrome, Safari, Opera */
+			}
+			
+			.nav-tab {
+				padding: 6px 12px !important;
+				font-size: 0.85rem !important;
+				flex: 0 0 auto !important;
+				white-space: nowrap !important;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+				min-width: auto !important;
+			}
+			
+			/* 隐藏文章标题旁边的图标 */
+			.article-header::before {
+				display: none;
+			}
+		}
+
+		/* .logo {
+			width: 109px;
+			height: 35px;
+			background: url(https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054815551/d345/2d47/6842/20efcec0b31a0a451dcbebacffa72682.png) center / cover no-repeat;
+		} */
+		.logo {
+			width: 120px;
+			height: 40px;
+			background: url(https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054815551/d345/2d47/6842/20efcec0b31a0a451dcbebacffa72682.png) center / contain no-repeat;
+			margin-left: 1rem;
+			transition: transform 0.3s ease;
+		}
+
+		.logo:hover {
+			transform: scale(1.05);
+		}
+
+		@media (max-width: 768px) {
+			.logo {
+				width: 100px;
+				height: 32px;
+			}
+
+			.header {
+				padding: 0.75rem 1.5rem;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.logo {
+				width: 90px;
+				height: 29px;
+			}
+		}
+
+		/* 新闻导航 */
+		.nav-section {
+			padding: 2rem;
+			width: 100%;
+		}
+
+		.nav-tabs {
+			display: flex;
+			gap: 1rem;
+			margin-bottom: 2rem;
+			flex-wrap: wrap;
+		}
+
+		.nav-tab {
+			padding: 0.75rem 1.5rem;
+			border-radius: 4px;
+			font-size: 1rem;
+			cursor: pointer;
+			position: relative;
+			overflow: hidden;
+			transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+		}
+
+		.nav-tab:not(.active):hover {
+			transform: translateY(-2px);
+			box-shadow: 0 2px 8px rgba(152, 40, 32, 0.2);
+		}
+
+		.nav-tab.active {
+			background-color: #982820;
+			color: #fff;
+			transform: scale(1.05);
+		}
+
+		.nav-tab::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: 0;
+			height: 2px;
+			background-color: #982820;
+			transition: width 0.3s ease, left 0.3s ease;
+		}
+
+		.nav-tab:not(.active):hover::after {
+			width: 100%;
+			left: 0;
+		}
+
+		/* 新闻列表 */
+		.news-list {
+			background: #fff;
+			border-radius: 12px;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+			width: 100%;
+			display: block;
+			opacity: 1;
+			transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
+			transform: translateY(0);
+			max-height: 1000px;
+			overflow: hidden;
+		}
+
+		.news-item {
+			padding: 1rem 1.5rem;
+			display: flex;
+			justify-content: space-between;
+			border-bottom: 1px solid #e5e7eb;
+			position: relative;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.3s ease, padding 0.3s ease;
+			border-left: 0px solid #982820;
+		}
+
+		.news-item:last-child {
+			border-bottom: none;
+		}
+
+		.news-item:hover {
+			background-color: rgba(152, 40, 32, 0.05);
+			transform: translateX(5px);
+			padding-left: 2rem;
+			border-left: 3px solid #982820;
+		}
+
+		.news-item.selected {
+			background-color: rgba(152, 40, 32, 0.1);
+			transform: translateX(5px);
+			padding-left: 2rem;
+			border-left: 3px solid #982820;
+		}
+
+		.news-title {
+			font-size: 1rem;
+			color: #111827;
+			flex: 1;
+			padding-right: 1rem;
+		}
+
+		.news-date {
+			font-size: 0.875rem;
+			color: #6b7280;
+			white-space: nowrap;
+		}
+
+		/* 文章容器美化 */
+		.article-container {
+			position: relative;
+			margin: 1rem auto 2rem;
+			background: url(https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809440/0cef/42a2/7df8/b093dc39ae9481220f856a8748a277af.jpg) center / cover no-repeat;
+			border: none;
+			border-radius: 8px;
+			padding-bottom: 2rem;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			max-width: none;
+			overflow: hidden;
+			transition: opacity 0.5s ease, transform 0.5s ease;
+			opacity: 0;
+			transform: translateY(20px);
+			max-height: 0;
+			pointer-events: none;
+		}
+
+		.article-container.visible {
+			display: flex;
+			opacity: 1;
+			transform: translateY(0);
+			max-height: 5000px; /* 足够大的高度确保内容可见 */
+			pointer-events: auto;
+		}
+
+		.news-list.hidden {
+			opacity: 0;
+			transform: translateY(-20px);
+			max-height: 0;
+			margin: 0;
+			padding: 0;
+			pointer-events: none;
+		}
+
+		/* 文章标题区域美化 */
+		.article-header {
+			background: linear-gradient(90deg, rgba(152, 40, 32, 0.95), rgba(178, 20, 20, 0.95));
+			padding: 1.25rem 0;
+			text-align: center;
+			width: 100vw;
+			/* 设置为视口宽度 */
+			position: relative;
+			left: 50%;
+			right: 50%;
+			margin-left: -50vw;
+			margin-right: -50vw;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+			color: #fff;
+		}
+
+		/* 文章内容区美化 */
+		.article-content {
+			width: 100%;
+			padding: 2rem;
+			display: flex;
+			flex: 1;
+			justify-content: center;
+			/* 确保内容居中 */
+		}
+
+		.article-main {
+			background: rgba(255, 255, 255, 0.98);
+			padding: 2.5rem;
+			flex-grow: 1;
+			max-width: 65%;
+			/* 限制文章宽度，提高可读性 */
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
+		}
+
+		/* 文章元信息美化 */
+		.article-meta {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 15px;
+			/* 减小间距 */
+			flex-wrap: wrap;
+			/* 允许换行 */
+			font-size: 0.9rem;
+			/* 略微缩小字体 */
+			color: #4d4d4d;
+			margin: 0.5rem auto 1.5rem;
+			padding: 0.75rem 1rem;
+			background-color: rgba(248, 249, 250, 0.7);
+			border-radius: 6px;
+			width: fit-content;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+		}
+
+		.meta-item {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.meta-divider {
+			height: 14px;
+			width: 1px;
+			background-color: #d0d0d0;
+		}
+
+		.article-divider {
+			height: 4px;
+			width: 40%;
+			max-width: 400px;
+			background: linear-gradient(90deg, transparent, #982820, transparent);
+			margin: 1rem auto 2.5rem;
+			border-radius: 2px;
+		}
+
+		/* 文章图片美化 */
+		.article-image {
+			display: block;
+			width: 100%;
+			max-width: 800px;
+			/* 从700px增加到800px */
+			/* 更适合的图片尺寸 */
+			height: auto;
+			margin: 2rem auto 2.5rem;
+			border: none;
+			border-radius: 6px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			transition: transform 0.3s ease;
+		}
+
+		.article-image:hover {
+			transform: scale(1.01);
+		}
+
+		/* 文章正文美化 */
+		.article-text {
+			font-size: 1.125rem;
+			line-height: 2;
+			letter-spacing: 0.5px;
+			text-indent: 2em;
+			color: #222;
+			/* 深一点的颜色提高对比度 */
+			font-weight: 400;
+			text-align: justify;
+			margin: 0 auto;
+		}
+
+		.article-paragraph {
+			margin-bottom: 1.8rem;
+			position: relative;
+			transition: all 0.2s ease;
+		}
+
+		/* 取消首段首字特效 - 注释掉或删除以下代码 */
+		/* 
+		.article-paragraph:first-of-type::first-letter {
+			font-size: 1.6em;
+			font-weight: 600;
+			color: #982820;
+			float: left;
+			margin-right: 2px;
+			line-height: 1;
+			padding-top: 4px;
+		}
+		*/
+
+		.article-paragraph:hover {
+			color: #111;
+		}
+
+		/* 附件下载区域样式 */
+		.article-attachments {
+			margin-top: 2.5rem;
+			padding-top: 1.5rem;
+			border-top: 1px dashed #e0e0e0;
+		}
+
+		.attachments-title {
+			font-size: 1.2rem;
+			color: #333;
+			margin-bottom: 1rem;
+			font-weight: 500;
+			display: flex;
+			align-items: center;
+		}
+
+		.attachments-title::before {
+			content: '';
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			background: url('https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054810435/5242/f590/8b7c/594f3d02cffd98692403ff1411d83595.png') center/contain no-repeat;
+			margin-right: 8px;
+		}
+
+		.attachments-list {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.attachment-item {
+			display: flex;
+			align-items: center;
+			padding: 12px 15px;
+			border-radius: 6px;
+			background-color: rgba(248, 249, 250, 0.7);
+			transition: background-color 0.2s ease;
+		}
+
+		.attachment-item:hover {
+			background-color: rgba(152, 40, 32, 0.05);
+		}
+
+		.attachment-icon {
+			width: 32px;
+			height: 32px;
+			margin-right: 12px;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+
+		.attachment-icon.pdf {
+			background-image: url('https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054811540/212d/3d83/289c/24e316509fff7833816ebba198d40e76.png');
+		}
+
+		.attachment-icon.doc {
+			background-image: url('https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809605/88b0/39cb/3055/959e29a424cd6761f05d57fbaadc6415.png');
+		}
+
+		.attachment-info {
+			flex: 1;
+		}
+
+		.attachment-name {
+			font-size: 0.95rem;
+			color: #333;
+			margin-bottom: 4px;
+		}
+
+		.attachment-size {
+			font-size: 0.8rem;
+			color: #666;
+		}
+
+		.attachment-download-btn {
+			background-color: #982820;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			padding: 6px 15px;
+			font-size: 0.9rem;
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+		}
+
+		.attachment-download-btn:hover {
+			background-color: #7e211a;
+		}
+
+		/* 响应式调整 */
+		@media (max-width: 768px) {
+			.attachment-item {
+				flex-wrap: wrap;
+				padding: 10px;
+			}
+
+			.attachment-info {
+				width: calc(100% - 42px);
+				margin-bottom: 8px;
+			}
+
+			.attachment-download-btn {
+				width: 100%;
+				text-align: center;
+				padding: 8px 0;
+			}
+
+			.nav-section {
+				padding: 1rem;
+			}
+
+			.article-header {
+				padding: 1rem 0;
+			}
+
+			.article-title {
+				font-size: 1.5rem;
+			}
+
+			.article-content {
+				padding: 1rem;
+			}
+
+			.article-main {
+				padding: 1.5rem;
+				max-width: 100%; /* 使文章内容占满全宽 */
+			}
+
+			.article-image {
+				max-width: 100%;
+			}
+
+			.news-item {
+				flex-direction: column;
+			}
+
+			.news-date {
+				align-self: flex-end;
+			}
+
+			.article-divider {
+				width: 60%;
+				margin: 0.75rem auto 1.5rem;
+			}
+
+			.article-text {
+				font-size: 1rem;
+				line-height: 1.8;
+				letter-spacing: 0.3px;
+			}
+
+			.article-paragraph {
+				margin-bottom: 1.5rem;
+			}
+
+			.article-meta {
+				flex-direction: column;
+				gap: 8px;
+				font-size: 0.9rem;
+			}
+
+			.meta-divider {
+				display: none;
+			}
+
+			.meta-item {
+				width: 100%;
+				justify-content: center;
+			}
+
+			.news-item {
+				padding: 0.75rem 1rem;
+			}
+
+			.news-title {
+				font-size: 0.95rem;
+			}
+
+			.news-date {
+				font-size: 0.8rem;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.article-main {
+				padding: 1.25rem;
+			}
+
+			.article-meta {
+				font-size: 0.9rem;
+			}
+
+			.article-text {
+				font-size: 0.95rem;
+			}
+
+			.news-item {
+				flex-direction: column;
+				gap: 0.3rem;
+			}
+
+			.news-date {
+				align-self: flex-end;
+			}
+		}
+
+		@media (max-width: 992px) {
+			.article-content {
+				padding: 1.5rem;
+			}
+
+			.article-main {
+				padding: 2rem;
+			}
+
+			.article-meta {
+				flex-wrap: wrap;
+				justify-content: center;
+				row-gap: 10px;
+			}
+
+			.meta-divider:nth-child(4) {
+				display: none;
+				/* 在中等屏幕上两行时隐藏第二行开头的分隔线 */
+			}
+		}
+
+		@media (max-width: 1200px) {
+			.article-container {
+				margin: 1rem 1rem 2rem;
+				max-width: calc(100% - 2rem);
+			}
+		}
+
+		/* 手机端样式调整 */
+		@media (max-width: 768px) {
+			/* 隐藏返回列表按钮 */
+			.back-to-list {
+				display: none;
+			}
+			
+			/* 添加返回按钮的替代方式 - 增强点击顶部标题的提示性 */
+			.article-header {
+				position: relative;
+				cursor: pointer;
+			}
+			
+			/* 添加视觉标识提示用户标题可点击返回 */
+			.article-header::before {
+				content: '← ';
+				position: absolute;
+				left: 10px;
+				font-size: 18px;
+				background: rgba(255, 255, 255, 0.2);
+				height: 30px;
+				width: 30px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+			}
+			
+			/* 确保文章标题在移动设备上显示正常 */
+			.article-title {
+				font-size: 18px !important;
+				margin: 0 auto;
+				max-width: calc(100% - 40px);
+				padding: 0 20px 0 30px;
+			}
+			
+			/* 美化移动端导航 */
+			.header {
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+			}
+
+			.nav-section {
+				padding: 1rem 0.75rem;
+			}
+
+			.nav-tabs {
+				background: #f8f8f8;
+				border-radius: 8px;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+				padding: 8px;
+				margin-bottom: 1rem;
+			}
+			
+			.nav-tab {
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+				transition: transform 0.2s ease;
+			}
+			
+			.nav-tab:active {
+				transform: scale(0.97);
+			}
+			
+			/* 美化新闻列表项 */
+			.news-list {
+				border-radius: 10px;
+				overflow: hidden;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+			}
+			
+			.news-item {
+				position: relative;
+				padding-right: 2.5rem;
+				border-left: 3px solid transparent;
+				transition: all 0.3s ease;
+			}
+			
+			.news-item:active {
+				background-color: rgba(152, 40, 32, 0.05);
+			}
+			
+			.news-item::after {
+				content: '›';
+				position: absolute;
+				right: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+				font-size: 1.5rem;
+				color: #982820;
+				opacity: 0.5;
+			}
+			
+			.news-item.selected {
+				border-left: 3px solid #982820;
+				background-color: rgba(152, 40, 32, 0.05);
+			}
+			
+			.news-date {
+				color: #982820;
+				opacity: 0.8;
+			}
+			
+			/* 增强页脚在移动端的显示 */
+			.page-footer {
+				padding: 30px 15px 25px;
+			}
+			
+			.footer-copyright {
+				width: 90%;
+				margin: 10px auto 0;
+				line-height: 1.6;
+			}
+			
+			/* 改善文章阅读体验 */
+			.article-text {
+				font-size: 1rem;
+				line-height: 1.7;
+				letter-spacing: 0.3px;
+			}
+
+			.article-paragraph {
+				margin-bottom: 1.3rem;
+			}
+			
+			/* 添加页面转换动画效果 */
+			.article-container {
+				transition: opacity 0.4s ease, transform 0.4s ease;
+			}
+			
+			.article-container.visible {
+				animation: fadeInUp 0.4s ease forwards;
+			}
+			
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			
+			/* 添加触感反馈 */
+			.nav-section, .news-list, .article-content {
+				-webkit-tap-highlight-color: transparent;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.article-content {
+				padding: 0.5rem;
+			}
+
+			.article-main {
+				padding: 1rem;
+			}
+
+			.article-header {
+				padding: 0.75rem 0;
+			}
+
+			.article-title {
+				font-size: 1.3rem;
+				padding: 0 0.75rem;
+			}
+		}
+
+		/* 底部页脚样式与动画 */
+		.footer {
+			background-color: #f8f9fa;
+			padding: 2rem 0;
+			margin-top: 1.5rem;
+			position: relative;
+			text-align: center;
+		}
+
+		.footer-logo {
+			width: 140px;
+			height: auto;
+			margin-bottom: 1rem;
+			opacity: 0.9;
+		}
+
+		.footer-divider {
+			width: 60px;
+			height: 2px;
+			background-color: #e0e0e0;
+			margin: 0 auto 1rem;
+		}
+
+		.footer-text {
+			color: #666;
+			font-size: 0.9rem;
+		}
+
+		/* 修复文章标题超出问题 */
+		.article-title {
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+			hyphens: auto;
+			line-height: 1.4;
+			padding: 0 20px;
+		}
+		
+		/* 添加返回按钮样式 */
+		.back-to-list {
+			display: none; /* 完全隐藏返回按钮 */
+		}
+		
+		.back-arrow {
+			display: none; /* 隐藏返回箭头 */
+		}
+		
+		/* 移动端样式增强 - 美化侧边栏 */
+		@media (max-width: 768px) {
+			/* 移除文章标题旁边的图标 */
+			.article-header::before {
+				display: none;
+			}
+			
+			/* 侧边栏美化 */
+			.sidebar {
+				background: linear-gradient(to bottom, #982820 0%, #982820 80px, #fff 80px, #fff 100%);
+				padding: 30px 15px 20px;
+				box-shadow: -2px 0 15px rgba(0, 0, 0, 0.2);
+			}
+			
+			/* 增加第一个选项与顶部的距离 */
+			.sidebar nav .nav-list {
+				margin-top: 50px;
+			}
+			
+			/* 美化导航菜单项 */
+			.sidebar nav .nav-list li {
+				margin: 10px 0;
+				transition: transform 0.2s ease;
+			}
+			
+			.sidebar nav .nav-list li:first-child {
+				margin-top: 20px; /* 第一个菜单项额外增加上边距 */
+			}
+			
+			.sidebar nav .nav-list li:hover {
+				transform: translateX(5px);
+			}
+			
+			.sidebar nav .nav-list li a {
+				display: block;
+				padding: 12px 20px;
+				background-color: #982820;
+				color: #fff;
+				border-radius: 6px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+				position: relative;
+				padding-left: 35px; /* 为图标留出空间 */
+				font-weight: 500;
+				letter-spacing: 0.5px;
+			}
+			
+			/* 为每个菜单添加图标 */
+			.sidebar nav .nav-list li a::before {
+				content: '';
+				position: absolute;
+				left: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 16px;
+				height: 16px;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
+				opacity: 0.9;
+			}
+			
+			/* 为不同菜单项设置不同图标 - 使用伪元素中的Unicode字符 */
+			.sidebar nav .nav-list li:nth-child(1) a::before { content: '🏢'; }
+			.sidebar nav .nav-list li:nth-child(2) a::before { content: '📰'; }
+			.sidebar nav .nav-list li:nth-child(3) a::before { content: '📚'; }
+			.sidebar nav .nav-list li:nth-child(4) a::before { content: '🎓'; }
+			.sidebar nav .nav-list li:nth-child(5) a::before { content: '📢'; }
+			.sidebar nav .nav-list li:nth-child(6) a::before { content: '📄'; }
+			
+			/* 增强点击效果 */
+			.sidebar nav .nav-list li a:active {
+				background-color: #6e1c17;
+				transform: scale(0.98);
+			}
+		}
+
+		/* 页脚 */
+		.page-footer {
+			background-color: #8B0000;
+			color: #fff;
+			text-align: center;
+			padding: 40px 0;
+			font-size: 14px;
+			position: relative;
+			overflow: hidden;
+			background: linear-gradient(135deg, #800000, #8B0000, #990000, #8B0000, #800000);
+			background-size: 400% 400%;
+			animation: gradientBG 15s ease infinite;
+			margin-top: 20px;
+		}
+
+		@keyframes gradientBG {
+			0% { background-position: 0% 50%; }
+			50% { background-position: 100% 50%; }
+			100% { background-position: 0% 50%; }
+		}
+
+		.footer-logo {
+			display: block;
+			margin: 0 auto 10px auto;
+			max-width: 150px;
+			height: auto;
+			position: relative;
+			z-index: 1;
+			filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+			transition: transform 0.3s ease;
+			animation: fadeInLogo 1.5s ease forwards;
+			opacity: 0;
+		}
+
+		@keyframes fadeInLogo {
+			0% { 
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			100% { 
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.footer-logo:hover {
+			transform: scale(1.1) rotate(5deg);
+		}
+
+		/* 移除浮动动画 */
+		/* @keyframes logoFloat {
+			0% { transform: translateY(0px); }
+			50% { transform: translateY(-10px); }
+			100% { transform: translateY(0px); }
+		} */
+
+		.footer-copyright {
+			font-size: 16px;
+			color: white;
+			animation: fadeInText 2s ease-in-out forwards;
+			margin-top: 10px;
+			position: relative;
+			display: inline-block;
+			opacity: 0;
+		}
+
+		@keyframes fadeInText {
+			0% {
+				opacity: 0;
+				transform: translateY(15px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* 翻页按钮区域样式 */
+		.pagination-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 2rem;
+			padding: 0.5rem;
+			gap: 1rem;
+			transition: opacity 0.5s ease, transform 0.5s ease;
+		}
+
+		/* 移动端翻页按钮样式 - 初始隐藏 */
+		@media (max-width: 768px) {
+			.pagination-container {
+				opacity: 0;
+				transform: translateY(10px);
+				position: relative;
+				padding-bottom: 1rem;
+			}
+			
+			/* 当添加显示类时显示翻页按钮 */
+			.pagination-container.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* 添加翻页按钮在文章可见时的隐藏样式 */
+		.article-mode .pagination-container {
+			opacity: 0 !important;
+			pointer-events: none;
+			position: absolute;
+			visibility: hidden;
+		}
+
+		.pagination-btn {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.5rem 1rem;
+			border: none;
+			background-color: #f5f5f5;
+			color: #333;
+			font-size: 0.9rem;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		}
+
+		.pagination-btn:hover {
+			background-color: #eaeaea;
+			transform: translateY(-2px);
+			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+		}
+
+		.pagination-btn:active {
+			transform: translateY(0);
+		}
+
+		.pagination-arrow {
+			font-size: 0.8rem;
+			font-weight: bold;
+		}
+
+		.pagination-btn[data-page="prev"] .pagination-arrow {
+			margin-right: 6px;
+		}
+
+		.pagination-btn[data-page="next"] .pagination-arrow {
+			margin-left: 6px;
+		}
+
+		.pagination-text {
+			font-weight: 500;
+		}
+
+		.pagination-numbers {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		.pagination-number {
+			width: 32px;
+			height: 32px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			cursor: pointer;
+			font-weight: 500;
+			transition: all 0.2s ease;
+		}
+
+		.pagination-number:hover {
+			background-color: rgba(152, 40, 32, 0.1);
+		}
+
+		.pagination-number.active {
+			background-color: #982820;
+			color: white;
+		}
+
+		.pagination-dots {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20px;
+			pointer-events: none;
+		}
+		
+		/* 响应式翻页样式 */
+		@media (max-width: 768px) {
+			.pagination-container {
+				flex-wrap: wrap;
+				gap: 0.7rem;
+			}
+			
+			.pagination-btn {
+				padding: 0.4rem 0.8rem;
+				font-size: 0.85rem;
+			}
+			
+			.pagination-number {
+				width: 28px;
+				height: 28px;
+				font-size: 0.9rem;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.pagination-container {
+				gap: 0.5rem;
+			}
+			
+			.pagination-numbers {
+				gap: 0.3rem;
+			}
+			
+			.pagination-number {
+				width: 26px;
+				height: 26px;
+			}
+			
+			.pagination-btn {
+				flex: 1;
+				min-width: 80px;
+			}
+		}
+	</style>
+	<script>
+		// 页面加载完成后执行
+		document.addEventListener('DOMContentLoaded', function () {
+			// 获取所有导航标签
+			const navTabs = document.querySelectorAll('.nav-tab');
+			const newsList = document.querySelector('.news-list');
+			const articleContainer = document.querySelector('.article-container');
+			const header = document.querySelector('.header');
+			const navSection = document.querySelector('.nav-section');
+			const paginationContainer = document.querySelector('.pagination-container');
+
+			// 添加导航栏滚动效果
+			let lastScrollTop = 0;
+			window.addEventListener('scroll', function() {
+				let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+				
+				if (window.innerWidth <= 768) {
+					// 只在移动端应用这个效果
+					if (currentScroll > 100 && currentScroll > lastScrollTop) {
+						// 向下滚动超过100px时隐藏导航和头部
+						header.style.transform = 'translateY(-100%)';
+						navSection.style.transform = 'translateY(-100%)';
+					} else {
+						// 向上滚动或在顶部时显示导航和头部
+						header.style.transform = 'translateY(0)';
+						navSection.style.transform = 'translateY(0)';
+					}
+				}
+				
+				lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+			});
+
+			// 跟踪当前活动类别
+			let currentCategory = '新闻快报';
+			// 跟踪当前页码
+			let currentPage = 1;
+			// 每页显示的新闻数量 - 从5改为8
+			const newsPerPage = 8;
+
+			// 各板块数据
+			const contentData = {
+				'新闻快报': {
+					news: [
+						{ title: '宣传部党支部召开“习近平文化思想”专题理论学习会 -宣传部思想论坛', date: '2025年06月05日' },
+						{ title: '凝心聚力强文化 提质进位创辉煌 ——党委宣传部、总务处、教育发展基金会办公室、哲学与公共管理学院、经济学院 联合举办主题党日活动-宣传部思想论坛', date: '2025年5月30日' },
+						{ title: '河南省报业协会秘书长李宜鹏一行到我校调研座谈-宣传部思想论坛 ', date: '2025年03月20日' },
+						{ title: '党委宣传部一行赴河南农业大学开展交流活动', date: '2024年10月17日' },
+						{ title: '党委宣传部召开集体学习会议', date: '2024年06月14日' },
+						{ title: '党委宣传部开展"强基层 优服务"主题活动', date: '2024年06月10日' },
+						{ title: '党委宣传部举办新媒体运营培训讲座', date: '2024年05月30日' },
+						{ title: '校领导到党委宣传部调研指导工作', date: '2024年05月20日' },
+						{ title: '党委宣传部举行2024年工作推进会', date: '2024年05月12日' },
+						{ title: '党委宣传部参加全省高校宣传工作座谈会', date: '2024年05月05日' },
+						{ title: '党委宣传部专题学习习近平新闻思想', date: '2024年04月28日' },
+						{ title: '党委宣传部与新闻与传播学院共建实习基地', date: '2024年04月20日' },
+						{ title: '党委宣传部表彰2023年度优秀通讯员', date: '2024年03月15日' },
+						{ title: '党委宣传部举办校园文化建设专题研讨会', date: '2024年03月08日' },
+						{ title: '党委宣传部启动校史资料征集工作', date: '2024年02月25日' }
+					],
+					article: {
+						title: '宣传部党支部召开“习近平文化思想”专题理论学习会 -宣传部思想论坛',
+						author: '马洁',
+						date: '2025年06月05日 15:37',
+						image: 'https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809673/fd71/2d08/bc4c/359b8df284183d4c015cf94e03784486.png',
+						content: [
+							'10月28日上午，党委宣传部在郑州校区友兰学堂301会议室召开巡察整改专题民主生活会。党委宣传部全体领导班子成员参加会议，学校党委第一巡察组郭保来、校纪委正处级纪检监察专员李贵仓到会指导。会议由校党委宣传部副部长、网络信息办公室主任赵晓芳主持。',
+							'会上，赵晓芳代表支部领导班子作对照检查，结合巡察组反馈的巡察意见，全面检视存在问题，通过典型案例深刻剖析问题存在原因，介绍整改工作推进情况，明确提出今后持续整改措施。赵晓芳带头开展个人检视剖析，班子成员依次对照检查，严肃开展批评和自我批评，正视问题、揭短亮丑，推心置腹、红脸出汗，着力从思想根源上解决问题，为推进宣传部事业高质量发展提供坚强保障。',
+							'郭保来肯定了宣传部巡察整改成效。他表示，党委宣传部工作做得很扎实、成效明显，经过一系列的整改措施落实落地，效果显著。宣传部作为学校对外的窗口，一是必须不断加强学习，紧跟学校发展的步伐；二是要提高执行力，及时有效发出河大好声音；三是面对存在的不足和挑战，要勇于克服，不断提升工作水平，为学校的发展贡献力量。',
+							'李贵仓在总结发言时表示，此次专题民主生活会准备充分，剖析问题深入全面、相互批评实事求是，是一次有质量、严要求的民主生活会。他从理论学习、新闻宣传、大思政和舆情处置等方面提出了工作建议，一是要进一步提高政治站位，深刻理解并明确从中央到省委再到学校党委对各项工作的具体要求，确保我们的行动与上级精神保持高度一致。二是要紧密结合实际，清晰界定并明确工作职责，既要抓住工作的根本，又要聚焦关键环节，确保每项任务都能精准到位。三是要勇于创新举措，坚持"当下改"与"长久立"相结合，借助此次巡察整改的契机，不断查找不足，扎扎实实推进整改工作，将巡察成果转化为推动学校各项事业高质量发展的强大动力。'
+						],
+						attachments: [
+							{ name: '党委宣传部巡察整改工作报告.pdf', size: '2.5MB', type: 'pdf' },
+							{ name: '巡察整改专题民主生活会会议纪要.docx', size: '1.8MB', type: 'doc' },
+							{ name: '整改措施与落实计划.pdf', size: '3.2MB', type: 'pdf' }
+						]
+					}
+				},
+				'理论学习': {
+					news: [
+						{ title: '学校举办"习近平新时代中国特色社会主义思想"专题研讨会', date: '2024年09月15日' },
+						{ title: '学习贯彻习近平总书记关于教育的重要论述', date: '2024年08月30日' },
+						{ title: '我校举办教师理论学习小组活动', date: '2024年08月18日' },
+						{ title: '深入学习实践科学发展观活动总结会议召开', date: '2024年07月25日' },
+						{ title: '理论中心组集体学习会议顺利举行', date: '2024年07月10日' },
+						{ title: '学校党委开展"学习新思想 建功新时代"专题研讨', date: '2024年07月01日' },
+						{ title: '我校举行习近平文化思想座谈会', date: '2024年06月25日' },
+						{ title: '理论学习中心组开展专题学习研讨', date: '2024年06月15日' },
+						{ title: '校领导为青年干部讲授"学史力行"专题党课', date: '2024年06月05日' },
+						{ title: '学校举办马克思主义理论前沿问题研讨会', date: '2024年05月25日' },
+						{ title: '理论学习中心组举行集中学习研讨', date: '2024年05月15日' },
+						{ title: '我校开展社会主义核心价值观主题教育活动', date: '2024年04月28日' }
+					],
+					article: {
+						title: '学校举办"习近平新时代中国特色社会主义思想"专题研讨会',
+						author: '李明',
+						date: '2024年09月15日 10:30',
+						image: 'https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809673/fd71/2d08/bc4c/359b8df284183d4c015cf94e03784486.png',
+						content: [
+							'9月14日，我校在郑州校区图书馆学术报告厅举办"习近平新时代中国特色社会主义思想"专题研讨会。校党委书记王明、校长李青等校领导出席会议，各学院党委书记、教师代表及学生代表200余人参加。',
+							'本次研讨会以"学思践悟 守正创新"为主题，旨在深入学习贯彻习近平新时代中国特色社会主义思想，落实立德树人根本任务，推动思想政治工作创新发展。会上，多位专家学者围绕习近平新时代中国特色社会主义思想的理论内涵、实践要求以及在教育教学中的应用等方面进行了深入交流。',
+							'王明书记在会上强调，全校师生要深入学习贯彻习近平新时代中国特色社会主义思想，不断增强"四个意识"、坚定"四个自信"、做到"两个维护"，以实际行动推进学校高质量发展。',
+							'会议还举行了"习近平新时代中国特色社会主义思想学习研究中心"揭牌仪式，标志着我校理论研究和学习宣传工作进入新阶段。研讨会期间，与会人员还就如何运用创新方式推动思想政治工作提质增效进行了广泛讨论，为进一步加强和改进我校理论学习和思想政治工作提供了宝贵建议。'
+						],
+						attachments: [
+							{ name: '习近平新时代中国特色社会主义思想学习资料.pdf', size: '5.7MB', type: 'pdf' },
+							{ name: '专题研讨会会议材料.pdf', size: '3.1MB', type: 'pdf' },
+							{ name: '研讨会发言稿汇编.docx', size: '2.6MB', type: 'doc' }
+						]
+					}
+				},
+				'思政课堂': {
+					news: [
+						{ title: '"四史"教育主题思政课开讲', date: '2024年09月20日' },
+						{ title: '思政课教师集体备课会议顺利召开', date: '2024年08月25日' },
+						{ title: '马克思主义学院举办青年教师教学竞赛', date: '2024年07月15日' },
+						{ title: '校领导为本科生讲授思政"第一课"', date: '2024年06月10日' },
+						{ title: '思政课教学改革研讨会成功举办', date: '2024年05月20日' }
+					],
+					article: {
+						title: '"四史"教育主题思政课开讲',
+						author: '张华',
+						date: '2024年09月20日 16:15',
+						image: 'https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809673/fd71/2d08/bc4c/359b8df284183d4c015cf94e03784486.png',
+						content: [
+							'9月19日下午，我校"四史"教育主题思政课在文科楼报告厅正式开讲。首场主题为"学党史、强信念、跟党走"，由马克思主义学院院长刘红教授主讲。来自全校各学院的300余名学生参加了本次课程。',
+							'刘红教授结合丰富的历史资料和生动的案例，从党的百年奋斗历程、伟大成就和宝贵经验三个方面，深入浅出地讲述了中国共产党的光辉历史。课程通过多媒体展示、历史影像回放等形式，增强了教学效果，让同学们在沉浸式的学习中感受党的伟大历程。',
+							'课后，多名学生表示，通过本次课程对党的历史有了更加系统、深入的了解，增强了"四个自信"，坚定了听党话、跟党走的信念。',
+							'据悉，本学期学校将围绕党史、新中国史、改革开放史、社会主义发展史，开设系列主题思政课，引导广大学生从"四史"学习中汲取智慧和力量，厚植爱党爱国情怀，培养担当民族复兴大任的时代新人。'
+						],
+						attachments: [
+							{ name: '"四史"教育教学参考资料.pdf', size: '4.3MB', type: 'pdf' },
+							{ name: '思政课程学习讲义.pdf', size: '2.9MB', type: 'pdf' }
+						]
+					}
+				},
+				'通知公告': {
+					news: [
+						{ title: '关于组织开展2024年度校园文化节的通知', date: '2024年10月15日' },
+						{ title: '关于开展教职工年度考核工作的通知', date: '2024年09月28日' },
+						{ title: '2024-2025学年第一学期开学工作安排', date: '2024年08月20日' },
+						{ title: '关于做好2024年迎新工作的通知', date: '2024年08月15日' },
+						{ title: '2024年暑期校园安全注意事项', date: '2024年07月01日' }
+					],
+					article: {
+						title: '关于组织开展2024年度校园文化节的通知',
+						author: '党委宣传部',
+						date: '2024年10月15日 09:00',
+						image: 'https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809673/fd71/2d08/bc4c/359b8df284183d4c015cf94e03784486.png',
+						content: [
+							'各学院、各部门：',
+							'为丰富校园文化生活，展示我校师生精神风貌，促进校园文化建设，经学校研究决定，定于2024年11月1日至30日举办2024年度校园文化节。现将有关事项通知如下：',
+							'一、活动主题：传承文化精神，展现青春风采',
+							'二、活动时间：2024年11月1日至11月30日',
+							'三、主要活动：1. 开幕式暨文艺汇演；2. 校园歌手大赛；3. 学术科技作品展；4. 传统文化体验活动；5. 校园摄影大赛；6. 闭幕式',
+							'四、组织实施：1. 各学院要高度重视，认真组织学生参与活动；2. 各相关职能部门要各司其职，密切配合，确保活动顺利进行；3. 活动期间，注意做好安全工作',
+							'希望全校师生积极参与，共同营造良好的校园文化氛围。特此通知。'
+						],
+						attachments: [
+							{ name: '2024年校园文化节活动安排表.pdf', size: '1.5MB', type: 'pdf' },
+							{ name: '各学院参与文化节活动报名表.docx', size: '0.8MB', type: 'doc' },
+							{ name: '校园文化节场地布置说明.pdf', size: '2.1MB', type: 'pdf' }
+						]
+					}
+				},
+				'文件资料': {
+					news: [
+						{ title: '2023-2024学年本科教学质量报告', date: '2024年09月10日' },
+						{ title: '学校"十四五"发展规划实施方案', date: '2024年08月05日' },
+						{ title: '校党委理论学习中心组学习资料汇编', date: '2024年07月20日' },
+						{ title: '新修订的教师聘任管理办法', date: '2024年06月25日' },
+						{ title: '2024年度科研项目申报指南', date: '2024年05月30日' }
+					],
+					article: {
+						title: '2023-2024学年本科教学质量报告',
+						author: '教务处',
+						date: '2024年09月10日 14:30',
+						image: 'https://seal-img.nos-jd.163yun.com/obj/w5rCgMKVw6DCmGzCmsK-/59054809673/fd71/2d08/bc4c/359b8df284183d4c015cf94e03784486.png',
+						content: [
+							'根据教育部相关文件要求，现发布我校2023-2024学年本科教学质量报告。本报告全面总结了我校过去一年本科教育教学工作的成效与经验，分析了存在的问题与不足，并提出了下一步的改进措施。',
+							'一、基本情况。本学年，学校共有本科专业85个，覆盖10个学科门类。全日制本科在校生25843人，专任教师1527人，生师比为16.9:1。教授、副教授占专任教师总数的61.5%，具有博士学位的教师占专任教师总数的68.3%。',
+							'二、教学建设与改革。本学年，学校新增国家级一流本科专业建设点3个，省级一流本科专业建设点5个；获批国家级一流课程2门，省级一流课程12门；立项教学改革研究项目38项；出版教材21部，其中国家级规划教材3部。',
+							'三、教学质量保障体系。学校进一步完善了"校-院-系"三级教学质量保障体系，修订了教学质量评估标准，开展了常态化教学检查与专项评估。学生评教满意度达93.5%，较上一学年提高1.2个百分点。',
+							'四、学生发展情况。本科生学科竞赛获国家级奖项142项，省级奖项286项；在核心期刊发表论文127篇；获批大学生创新创业训练计划项目183项。本科毕业生升学率为26.7%，就业率为91.5%。',
+							'五、存在问题与改进措施。主要问题：部分专业师资仍显不足；课程思政建设有待深化；实践教学体系尚需完善。改进措施：加大人才引进力度；推进课程思政示范项目建设；深化产教融合，强化实践育人。',
+							'本报告电子版可在学校教务处网站下载，欢迎各位师生查阅并提出宝贵意见。'
+						],
+						attachments: [
+							{ name: '2023-2024学年本科教学质量报告全文.pdf', size: '6.2MB', type: 'pdf' },
+							{ name: '教学质量数据分析表格.xlsx', size: '1.7MB', type: 'doc' },
+							{ name: '本科教学质量报告编制指南.pdf', size: '1.1MB', type: 'pdf' }
+						]
+					}
+				}
+			};
+
+			// 渲染新闻列表，添加分页支持
+			function renderNewsList(category, page = 1) {
+				const allNewsItems = contentData[category]?.news || [];
+				const totalPages = Math.ceil(allNewsItems.length / newsPerPage);
+				// 确保页码在有效范围内
+				currentPage = page < 1 ? 1 : (page > totalPages ? totalPages : page);
+				
+				// 计算当前页应显示的新闻
+				const startIndex = (currentPage - 1) * newsPerPage;
+				const endIndex = Math.min(startIndex + newsPerPage, allNewsItems.length);
+				const currentPageNews = allNewsItems.slice(startIndex, endIndex);
+				
+				// 更新新闻列表
+				const newsList = document.querySelector('.news-list');
+				// 添加淡出动画
+				newsList.style.opacity = '0';
+				newsList.style.transform = 'translateY(-10px)';
+				
+				setTimeout(() => {
+					// 更新列表内容
+					newsList.innerHTML = '';
+					currentPageNews.forEach((item, index) => {
+						const newsItem = document.createElement('div');
+						newsItem.className = 'news-item';
+						newsItem.innerHTML = `
+            <span class="news-title">${item.title}</span>
+            <span class="news-date">${item.date}</span>
+						`;
+						
+						// 添加点击事件处理
+						newsItem.addEventListener('click', function () {
+							// 移除其他项目的选中状态
+							document.querySelectorAll('.news-item').forEach(item => {
+								item.classList.remove('selected');
+							});
+							
+							// 添加选中状态
+							this.classList.add('selected');
+							
+							// 显示文章（使用全局索引，而不是页内索引）
+							showArticle(category, startIndex + index);
+						});
+						
+						newsList.appendChild(newsItem);
+					});
+					
+					// 更新分页按钮
+					updatePaginationButtons(currentPage, totalPages);
+					
+					// 添加淡入动画
+					setTimeout(() => {
+						newsList.style.opacity = '1';
+						newsList.style.transform = 'translateY(0)';
+					}, 50);
+				}, 300);
+			}
+			
+			// 更新分页按钮状态
+			function updatePaginationButtons(currentPage, totalPages) {
+				const paginationContainer = document.querySelector('.pagination-container');
+				const prevBtn = paginationContainer.querySelector('[data-page="prev"]');
+				const nextBtn = paginationContainer.querySelector('[data-page="next"]');
+				const numbersContainer = paginationContainer.querySelector('.pagination-numbers');
+				
+				// 更新上一页/下一页按钮状态
+				prevBtn.disabled = currentPage <= 1;
+				prevBtn.style.opacity = currentPage <= 1 ? '0.5' : '1';
+				prevBtn.style.cursor = currentPage <= 1 ? 'not-allowed' : 'pointer';
+				
+				nextBtn.disabled = currentPage >= totalPages;
+				nextBtn.style.opacity = currentPage >= totalPages ? '0.5' : '1';
+				nextBtn.style.cursor = currentPage >= totalPages ? 'not-allowed' : 'pointer';
+				
+				// 生成页码按钮
+				let numbersHTML = '';
+				
+				// 处理少于5页的情况
+				if (totalPages <= 5) {
+					for (let i = 1; i <= totalPages; i++) {
+						numbersHTML += `<div class="pagination-number ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</div>`;
+					}
+				} else {
+					// 处理多于5页的情况
+					if (currentPage <= 3) {
+						// 当前页在前三页
+						for (let i = 1; i <= 3; i++) {
+							numbersHTML += `<div class="pagination-number ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</div>`;
+						}
+						numbersHTML += `<div class="pagination-dots">...</div>`;
+						numbersHTML += `<div class="pagination-number" data-page="${totalPages}">${totalPages}</div>`;
+					} else if (currentPage >= totalPages - 2) {
+						// 当前页在后三页
+						numbersHTML += `<div class="pagination-number" data-page="1">1</div>`;
+						numbersHTML += `<div class="pagination-dots">...</div>`;
+						for (let i = totalPages - 2; i <= totalPages; i++) {
+							numbersHTML += `<div class="pagination-number ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</div>`;
+						}
+					} else {
+						// 当前页在中间
+						numbersHTML += `<div class="pagination-number" data-page="1">1</div>`;
+						numbersHTML += `<div class="pagination-dots">...</div>`;
+						numbersHTML += `<div class="pagination-number" data-page="${currentPage - 1}">${currentPage - 1}</div>`;
+						numbersHTML += `<div class="pagination-number active" data-page="${currentPage}">${currentPage}</div>`;
+						numbersHTML += `<div class="pagination-number" data-page="${currentPage + 1}">${currentPage + 1}</div>`;
+						numbersHTML += `<div class="pagination-dots">...</div>`;
+						numbersHTML += `<div class="pagination-number" data-page="${totalPages}">${totalPages}</div>`;
+					}
+				}
+				
+				numbersContainer.innerHTML = numbersHTML;
+				
+				// 为页码按钮添加点击事件
+				document.querySelectorAll('.pagination-number').forEach(btn => {
+					btn.addEventListener('click', function() {
+						const page = parseInt(this.getAttribute('data-page'));
+						if (page !== currentPage) {
+							renderNewsList(currentCategory, page);
+						}
+					});
+				});
+			}
+			
+			// 为上一页下一页按钮添加点击事件
+			document.querySelector('.pagination-btn[data-page="prev"]').addEventListener('click', function() {
+				if (currentPage > 1) {
+					renderNewsList(currentCategory, currentPage - 1);
+				}
+			});
+			
+			document.querySelector('.pagination-btn[data-page="next"]').addEventListener('click', function() {
+				const totalPages = Math.ceil(contentData[currentCategory].news.length / newsPerPage);
+				if (currentPage < totalPages) {
+					renderNewsList(currentCategory, currentPage + 1);
+				}
+			});
+
+			// 渲染文章
+			function renderArticle(category, index) {
+				const article = contentData[category]?.article;
+				if (!article) return;
+
+				const articleContainer = document.querySelector('.article-container');
+				
+				// 添加淡出动画
+				articleContainer.style.opacity = '0';
+				articleContainer.style.transform = 'translateY(20px)';
+				
+				setTimeout(() => {
+				articleContainer.innerHTML = `
+    <div class="article-header">
+							<h2 class="article-title">${article.title}</h2>
+    </div>
+    <div class="article-content">
+        <div class="article-main">
+            <div class="article-meta">
+									<span class="meta-item">
+										<i class="meta-icon author-icon"></i>
+										<span>${article.author}</span>
+									</span>
+									<span class="meta-divider"></span>
+									<span class="meta-item">
+										<i class="meta-icon date-icon"></i>
+										<span>${article.date}</span>
+									</span>
+            </div>
+            <div class="article-divider"></div>
+								<img src="${article.image}" alt="${article.title}" class="article-image">
+								${article.content.map(p => `<p class="article-paragraph article-text">${p}</p>`).join('')}
+								
+								${article.attachments && article.attachments.length > 0 ? `
+								<div class="article-attachments">
+									<h3 class="attachments-title">相关附件</h3>
+									<div class="attachments-list">
+										${article.attachments.map(attachment => `
+											<div class="attachment-item">
+												<div class="attachment-icon ${attachment.type}"></div>
+												<div class="attachment-info">
+													<div class="attachment-name">${attachment.name}</div>
+													<div class="attachment-size">${attachment.size}</div>
+												</div>
+												<button class="attachment-download-btn">下载</button>
+											</div>
+										`).join('')}
+									</div>
+								</div>
+								` : ''}
+            </div>
+                        </div>
+					`;
+					
+					// 当内容更新后，添加淡入动画
+					setTimeout(() => {
+						if (articleContainer.classList.contains('visible')) {
+							articleContainer.style.opacity = '1';
+							articleContainer.style.transform = 'translateY(0)';
+						}
+					}, 50);
+					
+					// 添加附件下载按钮事件处理
+					if (article.attachments && article.attachments.length > 0) {
+						document.querySelectorAll('.attachment-download-btn').forEach((btn, i) => {
+							btn.addEventListener('click', function(e) {
+								e.preventDefault();
+								alert(`开始下载: ${article.attachments[i].name}`);
+								// 这里可以添加实际的下载逻辑
+							});
+						});
+					}
+				}, 300);
+			}
+
+			// 显示文章，隐藏列表
+			function showArticle(category, index) {
+				renderArticle(category, index);
+				
+				newsList.classList.add('hidden');
+				// 为容器添加文章模式类，用于隐藏翻页按钮
+				document.querySelector('.container').classList.add('article-mode');
+				
+				// 等待列表隐藏动画完成后再显示文章
+				setTimeout(() => {
+					articleContainer.classList.add('visible');
+					
+					// 在文章显示后，再启动内部元素的动画效果
+					setTimeout(() => {
+						articleContainer.style.opacity = '1';
+						articleContainer.style.transform = 'translateY(0)';
+						
+						// 滚动到文章顶部
+						articleContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}, 50);
+				}, 300);
+			}
+
+			// 隐藏文章，显示列表
+			function hideArticle() {
+				articleContainer.style.opacity = '0';
+				articleContainer.style.transform = 'translateY(20px)';
+				
+				// 等待文章隐藏动画完成后再显示列表
+				setTimeout(() => {
+					articleContainer.classList.remove('visible');
+					newsList.classList.remove('hidden');
+					
+					// 移除文章模式类，允许翻页按钮在适当时机显示
+					document.querySelector('.container').classList.remove('article-mode');
+					
+					// 在列表显示后，再启动内部元素的动画效果
+					setTimeout(() => {
+						newsList.style.opacity = '1';
+						newsList.style.transform = 'translateY(0)';
+						// 重新检查是否需要显示翻页按钮
+						handleScroll();
+					}, 50);
+				}, 300);
+			}
+
+			// 初始渲染新闻列表
+			renderNewsList(currentCategory);
+
+			// 为导航标签添加点击事件
+			navTabs.forEach(tab => {
+				tab.addEventListener('click', function () {
+					// 移除所有标签的active类
+					navTabs.forEach(t => {
+						t.classList.remove('active');
+						// 添加离开动画
+						t.style.transform = 'scale(1.0)';
+					});
+					
+					// 为当前点击的标签添加active类和进入动画
+					this.classList.add('active');
+					this.style.transform = 'scale(1.05)';
+
+					// 更新当前类别
+					currentCategory = this.textContent;
+
+					// 重置为第1页
+					currentPage = 1;
+					
+					// 渲染对应内容
+					renderNewsList(currentCategory, currentPage);
+					renderArticle(currentCategory, 0); // 始终显示第一篇文章
+					
+					// 确保显示列表，隐藏文章（恢复到最初状态）
+					hideArticle();
+				});
+			});
+
+			// 添加新闻列表项选中样式
+			const style = document.createElement('style');
+			style.textContent = `
+            .news-item {
+                position: relative;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+            
+            .news-item:hover {
+                background-color: rgba(152, 40, 32, 0.05);
+            }
+            
+            .news-item.selected {
+                background-color: rgba(152, 40, 32, 0.1);
+            }
+            
+            .news-item.selected::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background-color: #982820;
+            }
+        `;
+			document.head.appendChild(style);
+
+			// 移动端滑动导航支持
+			const navTabsContainer = document.querySelector('.nav-tabs');
+			let startX, scrollLeft;
+
+			function handleTouchStart(e) {
+				startX = e.touches[0].pageX - navTabsContainer.offsetLeft;
+				scrollLeft = navTabsContainer.scrollLeft;
+			}
+
+			function handleTouchMove(e) {
+				if (!startX) return;
+				const x = e.touches[0].pageX - navTabsContainer.offsetLeft;
+				const walk = (x - startX) * 2; // 滚动速度
+				navTabsContainer.scrollLeft = scrollLeft - walk;
+			}
+
+			function handleTouchEnd() {
+				startX = null;
+			}
+
+			if (navTabsContainer) {
+				navTabsContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+				navTabsContainer.addEventListener('touchmove', handleTouchMove, { passive: true });
+				navTabsContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+			}
+
+			// 移动端下滚动显示翻页按钮（修改）
+			function handleScroll() {
+				// 检查是否在文章模式，文章模式下不显示翻页按钮
+				if (document.querySelector('.container').classList.contains('article-mode')) {
+					paginationContainer.classList.remove('visible');
+					return;
+				}
+				
+				if (window.innerWidth <= 768) {
+					const scrollPosition = window.scrollY;
+					const windowHeight = window.innerHeight;
+					const documentHeight = document.documentElement.scrollHeight;
+					
+					// 当滚动接近页面底部时显示翻页按钮
+					if (scrollPosition + windowHeight > documentHeight - 150) {
+						paginationContainer.classList.add('visible');
+					} else {
+						paginationContainer.classList.remove('visible');
+					}
+				} else {
+					// 非移动端始终显示翻页按钮，除非在文章模式
+					paginationContainer.classList.add('visible');
+				}
+			}
+
+			// 添加滚动事件监听
+			window.addEventListener('scroll', handleScroll);
+			
+			// 初始检查，确保在页面加载时就正确显示翻页按钮
+			handleScroll();
+			
+			// 页面尺寸改变时也检查一次
+			window.addEventListener('resize', handleScroll);
+		});
+	</script>
+</head>
+
+<body>
+	<!-- 无JS时显示的提示 -->
+	<noscript>
+		<div
+			style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
+			<div style="max-width: 600px; margin: 0 auto;">
+				<h2 style="color: #982820; margin-bottom: 20px; font-size: 24px;">需要启用JavaScript</h2>
+				<div
+					style="width: 80px; height: 80px; margin: 0 auto 20px; background-color: #982820; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+						stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="10"></circle>
+						<line x1="12" y1="8" x2="12" y2="12"></line>
+						<line x1="12" y1="16" x2="12.01" y2="16"></line>
+					</svg>
+				</div>
+				<p style="font-size: 16px; line-height: 1.6; margin-bottom: 15px;"></p>
+				您的浏览器已禁用JavaScript，或不支持JavaScript。
+				</p>
+				<p style="font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
+					党委宣传部网站需要JavaScript才能正常工作。请启用浏览器的JavaScript功能后刷新页面。
+				</p>
+				<p style="font-size: 14px; color: #666;">
+					如果您需要帮助，请联系网站管理员或参考<a href="https://www.enablejavascript.io/zh"
+						style="color: #982820; text-decoration: underline;">如何启用JavaScript</a>。
+				</p>
+			</div>
+		</div>
+	</noscript>
+	<div class="container">
+		<!-- 头部导航 -->
+		<header class="header flex justify-between items-center">
+			<h1 class="header-title"><a href="./index.html" target="_self">党委宣传部</a></h1>
+			<a href="https://www.henu.edu.cn" target="_blank">
+				<div class="logo"></div>
+			</a>
+		</header>
+
+		<!-- 新闻导航 -->
+		<section class="nav-section">
+			<div class="nav-tabs">
+				<div class="nav-tab active">新闻快报</div>
+				<div class="nav-tab">理论学习</div>
+				<div class="nav-tab">思政课堂</div>
+				<div class="nav-tab">通知公告</div>
+				<div class="nav-tab">文件资料</div>
+			</div>
+
+			<div class="news-list">
+				<div class="news-item">
+					<span class="news-title">党委宣传部召开巡察整改专题民主生活会</span>
+					<span class="news-date">2024年10月29日</span>
+				</div>
+				<div class="news-item">
+					<span class="news-title">教育部高校大学生心理健康教育专家咨询委员会秘书处主任郑骊君做客我校"至善"思政大讲堂第三讲</span>
+					<span class="news-date">2024年10月27日</span>
+				</div>
+				<div class="news-item">
+					<span class="news-title">党委宣传部召开2024年相关决策咨询工作讨论会</span>
+					<span class="news-date">2024年10月25日</span>
+				</div>
+				<div class="news-item">
+					<span class="news-title">党委宣传部一行赴河南农业大学开展交流活动</span>
+					<span class="news-date">2024年10月17日</span>
+				</div>
+				<div class="news-item">
+					<span class="news-title">党委宣传部召开集体学习会议</span>
+					<span class="news-date">2024年06月14日</span>
+				</div>
+			</div>
+			
+			<!-- 添加翻页按钮区域 -->
+			<div class="pagination-container">
+				<button class="pagination-btn" data-page="prev">
+					<span class="pagination-arrow">&#10094;</span>
+					<span class="pagination-text">上一页</span>
+				</button>
+				<div class="pagination-numbers">
+					<div class="pagination-number active">1</div>
+					<div class="pagination-number">2</div>
+					<div class="pagination-number">3</div>
+					<div class="pagination-dots">...</div>
+					<div class="pagination-number">5</div>
+				</div>
+				<button class="pagination-btn" data-page="next">
+					<span class="pagination-text">下一页</span>
+					<span class="pagination-arrow">&#10095;</span>
+				</button>
+			</div>
+		</section>
+
+		<!-- 文章内容 -->
+		<article class="article-container">
+			<!-- 内容将由JavaScript动态渲染 -->
+		</article>
+			</div>
+
+	<!-- 页脚 -->
+	<footer class="page-footer">
+		<img src="./img/henu_logo.png" alt="Footer Logo" class="footer-logo">
+		<style>
+			.page-footer {
+				background-color: #8B0000;
+				color: #fff;
+				text-align: center;
+				padding: 40px 0;
+				font-size: 14px;
+				position: relative;
+				overflow: hidden;
+				background: linear-gradient(135deg, #800000, #8B0000, #990000, #8B0000, #800000);
+				background-size: 400% 400%;
+				animation: gradientBG 15s ease infinite;
+				margin-top: 20px;
+			}
+
+			@keyframes gradientBG {
+				0% { background-position: 0% 50%; }
+				50% { background-position: 100% 50%; }
+				100% { background-position: 0% 50%; }
+			}
+
+			.footer-logo {
+				display: block;
+				margin: 0 auto 10px auto;
+				max-width: 150px;
+				height: auto;
+				position: relative;
+				z-index: 1;
+				filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+				transition: transform 0.3s ease;
+				animation: fadeInLogo 1.5s ease forwards;
+				opacity: 0;
+			}
+
+			@keyframes fadeInLogo {
+				0% { 
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				100% { 
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.footer-logo:hover {
+				transform: scale(1.1) rotate(5deg);
+			}
+
+			/* 移除浮动动画 */
+			/* @keyframes logoFloat {
+				0% { transform: translateY(0px); }
+				50% { transform: translateY(-10px); }
+				100% { transform: translateY(0px); }
+			} */
+		</style>
+		<p class="footer-copyright">
+			© 2024 河南大学党委宣传部.
+			<br>
+			技术支持: 河南大学网站工作室
+		</p>
+		<style>
+			.footer-copyright {
+				font-size: 16px;
+				color: white;
+				animation: fadeInText 2s ease-in-out forwards;
+				margin-top: 10px;
+				position: relative;
+				display: inline-block;
+				opacity: 0;
+			}
+			
+			@keyframes fadeInText {
+				0% {
+					opacity: 0;
+					transform: translateY(15px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			
+			.footer-copyright::after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 2px;
+				bottom: -5px;
+				left: 50%;
+				background-color: white;
+				transition: all 0.5s ease;
+				opacity: 0;
+			}
+			
+			.footer-copyright:hover::after {
+				width: 80%;
+				left: 10%;
+				opacity: 0.8;
+			}
+			
+			/* Add particles effect */
+			.page-footer::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-image: 
+					radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+					radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+					radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+				background-size: 50px 50px;
+				animation: particleMove 8s linear infinite;
+			}
+			
+			@keyframes particleMove {
+				0% { background-position: 0 0; }
+				100% { background-position: 50px 50px; }
+			}
+		</style>
+	</footer>
+</body>
+
+</html>
