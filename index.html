@@ -1877,12 +1877,16 @@
 
         <!-- 新闻资讯 -->
         <section class="content-section container">
-            <h2 class="section-title"><span>新闻</span><span>资讯</span></h2>
+            <!-- 替换标题为更小巧的图片并贴合背景 -->
+            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
+                <img src="./img/title_new.svg" alt="新闻资讯" style="width: 180px; height: auto; max-width: 100%; display: block; background: transparent; box-shadow: none; border: none; border-radius: 0; padding: 0; margin: 0;" />
+            </div>
+            <!-- <h2 class="section-title"><span>新闻</span><span>资讯</span></h2> -->
             <div class="card-grid" id="news-card-grid">
                 <article class="card">
                     <img src="./img/news_1.png" alt="news_1" class="card-image">
                     <div class="card-content">
-                        <h3 class="card-title"><a href="./inner.html">宣传部党支部召开“习近平文化思想”专题理论学习会</a></h3>
+                        <h3 class="card-title"><a href="./inner.html">宣传部党支部召开"习近平文化思想"专题理论学习会</a></h3>
                         <p class="card-meta"><span>2024年10月29日 15:01</span></p>
                     </div>
                 </article>
@@ -1903,7 +1907,10 @@
             </div>
 
             <!-- 理论学习 / 最新文章 -->
-            <h2 class="section-title"><span>理论</span><span>学习</span></h2>
+            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
+                <img src="./img/title_theory.svg" alt="理论学习" style="width: 180px; height: auto; max-width: 100%; display: block; background: transparent; box-shadow: none; border: none; border-radius: 0; padding: 0; margin: 0;" />
+            </div>
+            <!-- <h2 class="section-title"><span>理论</span><span>学习</span></h2> -->
             <div class="theory-latest-grid">
                 <div class="theory-column">
                     <h3 class="column-title">重点专题</h3>
@@ -1945,8 +1952,11 @@
         </section>
 
         <!-- 思政课堂 -->
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
+            <img src="./img/title_class.svg" alt="思政课堂" style="width: 180px; height: auto; max-width: 100%; display: block; background: transparent; box-shadow: none; border: none; border-radius: 0; padding: 0; margin: 0;" />
+        </div>
+        <!-- <h2 class="section-title"><span>思政</span><span>课堂</span></h2> -->
         <section class="content-section container">
-            <h2 class="section-title"><span>思政</span><span>课堂</span></h2>
             <div class="carousel-container classroom-carousel">
                 <div class="carousel-wrapper">
                     <article class="card">
@@ -1983,11 +1993,13 @@
         </section>
 
         <!-- 通知公告 (占位符) -->
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 12px;">
+            <img src="./img/title_answer.svg" alt="通知公告" style="width: 180px; height: auto; max-width: 100%; display: block; background: transparent; box-shadow: none; border: none; border-radius: 0; padding: 0; margin: 0;" />
+        </div>
+        <!-- <h2 class="section-title"><span>通知</span><span>公告</span></h2> -->
         <section class="content-section container">
             <div class="content-box announcement-box">
-                <h2 class="section-title"><span>通知</span><span>公告</span></h2>
-
-                <!-- 把原来的 placeholder 删掉，换成下面的列表容器 -->
+                <!-- 已删除h2标题，避免重复 -->
                 <div class="announcements-list">
                     <article class="announcement-item">
                         <!-- 左边的内容区域 -->
