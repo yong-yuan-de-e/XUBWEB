@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const covers = document.getElementById("carouselWrapper");
   const coverBtn = document.getElementById("carouselButtons");
 
+  let autoPlayTimer = null;
   let loadedCount = 0;
   const batchSize = 5; // 每次加载5条
   let currentCoverIndex = 0;
@@ -44,17 +45,21 @@ document.addEventListener("DOMContentLoaded", function () {
     nextBatch.forEach((element, idx) => {
       // 新闻项
       const item = document.createElement("div");
+      const realIndex = loadedCount + idx; // 真实索引
       item.className = "newsItem";
       item.innerHTML = `
-        <div class="newsContent">
+        <div class="newsContent" >
           <h3 class="singleRow">${element.title || ""}</h3>
           <p class="singleRow">${element.date || ""}</p>
         </div>
         <div class="singleRow">${element.abstract || ""}</div>
       `;
       item.onclick = () => {
-        currentCoverIndex = loadedCount + idx;
-        showNewsItem(currentCoverIndex);
+        window.open(element.link, "_blank");
+      };
+      item.onmouseenter = () => {
+        showNewsItem(realIndex); // 直接高亮和切换
+        currentCoverIndex = realIndex;
       };
       newsListEl.insertBefore(item, sentinel);
     });
@@ -83,44 +88,79 @@ document.addEventListener("DOMContentLoaded", function () {
       threshold: 1.0,
     }
   );
+  // 初始化时只创建一次容器
+  function initCoverBox() {
+    covers.innerHTML = "";
+    const imgBox = document.createElement("div");
+    imgBox.className = "coverImageBox";
+
+    const img = document.createElement("img");
+    img.className = "coverImage";
+    imgBox.appendChild(img);
+
+    const titleDiv = document.createElement("div");
+    titleDiv.className = "coverTitle";
+    imgBox.appendChild(titleDiv);
+
+    covers.appendChild(imgBox);
+  }
+  initCoverBox();
 
   // 渲染轮播封面
   function showNewsItem(idx) {
-  // 高亮新闻
-  const newsItems = newsListEl.querySelectorAll(".newsItem");
-  newsItems.forEach((item, i) => {
-    item.classList.toggle("active", i === idx);
-  });
+    // 高亮新闻
+    const newsItems = newsListEl.querySelectorAll(".newsItem");
+    newsItems.forEach((item, i) => {
+      item.classList.toggle("active", i === idx);
+    });
 
-  // 图片切换动画
-  const oldImg = covers.querySelector('.coverImage');
-  if (oldImg) {
-    oldImg.classList.add('fade-out');
-    oldImg.addEventListener('animationend', () => {
-      oldImg.remove();
-      insertNewImg();
-    }, { once: true });
-  } else {
-    insertNewImg();
+    // 获取唯一的图片和标题元素
+    const imgBox = covers.querySelector(".coverImageBox");
+    const img = imgBox.querySelector(".coverImage");
+    const titleDiv = imgBox.querySelector(".coverTitle");
+
+    // 动画：淡出
+    img.classList.add("fade-out");
+    titleDiv.classList.add("fade-out");
+
+    //点击进入新闻
+    img.onclick = () => {
+      window.open(newsList[idx].link, "_blank");
+    };
+
+    img.addEventListener(
+      "animationend",
+      () => {
+        // 切换图片和标题
+        img.src = newsList[idx].img;
+        img.alt = "封面图片";
+        titleDiv.textContent = newsList[idx].title;
+
+        // 动画：淡入
+        img.classList.remove("fade-out");
+        img.classList.add("fade-in");
+        titleDiv.classList.remove("fade-out");
+        titleDiv.classList.add("fade-in");
+
+        // 移除淡入动画类
+        img.addEventListener(
+          "animationend",
+          () => {
+            img.classList.remove("fade-in");
+            titleDiv.classList.remove("fade-in");
+          },
+          { once: true }
+        );
+      },
+      { once: true }
+    );
+
+    // 按钮高亮
+    const btns = coverBtn.querySelectorAll("button");
+    btns.forEach((btn, i) => {
+      btn.classList.toggle("active", i === idx);
+    });
   }
-
-  function insertNewImg() {
-    const img = document.createElement('img');
-    img.src = newsList[idx].img;
-    img.alt = "封面图片";
-    img.className = "coverImage fade-in";
-    covers.appendChild(img);
-    img.addEventListener('animationend', () => {
-      img.classList.remove('fade-in');
-    }, { once: true });
-  }
-
-  // 按钮高亮
-  const btns = coverBtn.querySelectorAll("button");
-  btns.forEach((btn, i) => {
-    btn.classList.toggle("active", i === idx);
-  });
-}
 
   // 渲染轮播按钮
   function renderCoverButtons() {
@@ -137,8 +177,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // 自动轮播函数
+  function startAutoPlay() {
+    stopAutoPlay(); // 避免多次启动
+    autoPlayTimer = setInterval(() => {
+      if (loadedCount === 0) return;
+      currentCoverIndex = (currentCoverIndex + 1) % loadedCount;
+      showNewsItem(currentCoverIndex);
+    }, 4000); // 每4秒切换一次
+  }
+
+  // 停止自动轮播
+  function stopAutoPlay() {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  }
+
+  // 鼠标悬停封面或新闻栏时暂停，移出时恢复
+  covers.addEventListener("mouseenter", stopAutoPlay);
+  covers.addEventListener("mouseleave", startAutoPlay);
+  newsListEl.addEventListener("mouseenter", stopAutoPlay);
+  newsListEl.addEventListener("mouseleave", startAutoPlay);
+
   // 初始加载
   addNewsItem();
   showNewsItem(currentCoverIndex);
   observer.observe(sentinel);
+  startAutoPlay();
 });
